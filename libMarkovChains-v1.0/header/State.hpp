@@ -13,6 +13,7 @@ private:
   int nVertices;
   int nAdd;
   int nDel;
+  int nMov;
   int nUp;
   int nLoop;
   vector<State*> neighbors;
@@ -31,6 +32,7 @@ public:
 
   void addNeighbor(State* x);
   void updateConvexHull(Point p);
+  void updateConvexHullWithMove(Point p);
   void display();
   void printStat();
 };

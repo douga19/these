@@ -22,6 +22,6 @@ vector<Point> computeConvexHull(vector<Point> listPoints, int n);
 Point randomPoint(int k);
 int findIn(vector<Point> v, Point p);
 bool isEqual(vector<Point> u, vector<Point> v);
-
+Point moveToNeighbor(Point p);
 
 #endif

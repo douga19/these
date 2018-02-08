@@ -170,3 +170,24 @@ bool isEqual(vector<Point> u, vector<Point> v){
   }
   return res;
 }
+
+// Change les coordonnées d'un point p par ceux d'un de ses 4 voisins
+Point moveToNeighbor(Point p){
+  Point res;
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dis(0,1);
+
+  if(dis(gen))
+    res.x = p.x + 1;
+  else
+    res.x = p.x - 1;
+
+  if(dis(gen))
+    res.y = p.y + 1;
+  else
+    res.y = p.y - 1;
+
+  return res;
+}

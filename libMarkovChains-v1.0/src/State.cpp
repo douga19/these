@@ -3,7 +3,7 @@
 State::State(int n, vector<Point> c){
   nVertices = n;
   convexHull = c;
-  nAdd = nDel = nUp = nLoop = 0;
+  nAdd = nDel = nUp = nLoop = nMov = 0;
 }
 
 void State::addNeighbor(State* x){
@@ -44,6 +44,55 @@ void State::updateConvexHull(Point p){
   nUp++;
 }
 
+void State::updateConvexHullWithMove(Point p){
+  int i = findIn(convexHull,p);
+  if (i > -1){
+    // Si ce n'est pas un simplexe, on supprime le point
+    if (convexHull.size() - 1 > 3){
+      convexHull.erase(convexHull.begin()+i);
+      nDel++;
+      cout << "del " << nDel << endl;
+    }
+    // Si c'est un simplexe on choisit de le déplacer
+    // Recalcule l'enveloppe convexe si il est bon on déplace
+    // Sinon on boucle
+    else {
+      std::vector<Point> v = convexHull;
+      Point u = moveToNeighbor(v[i]);
+      v.erase(v.begin()+i);
+      v.push_back(u);
+      v = computeConvexHull(v, v.size());
+      if (v.size() == 3){
+        convexHull.erase(convexHull.begin()+i);
+        convexHull.push_back(u);
+        nMov++;
+        cout << "move " << nMov << endl;
+      } else {
+        nLoop++;
+        cout << "loop " << nLoop << endl;
+      }
+
+    }
+  }
+  else {
+    std::vector<Point> v = convexHull;
+    int taille = convexHull.size();
+    v.push_back(p);
+    v = computeConvexHull(v, taille + 1);
+    if (v.size() == taille +1){
+      convexHull.push_back(p);
+      nAdd++;
+      cout << "add " << nAdd << endl;
+    }
+    else {
+      nLoop++;
+      cout << "loop " << nLoop << endl;
+    }
+  }
+  nUp++;
+  cout << "up " << nUp << endl;
+}
+
 void State::display(){
   cout << "------------------------" << endl;
   std::vector<Point> v = getConvexHull();
@@ -56,6 +105,7 @@ void State::printStat(){
   cout << "------------------------" << endl;
   cout << "Nombre updates: " << nUp << endl;
   cout << "Nombre d'ajouts: " << nAdd << endl;
+  cout << "Nombre de deplacement" << nMov << endl;
   cout << "Nombre de suppressions: " << nDel << endl;
   cout << "Nombre de boucles: " << nLoop << endl;
 
