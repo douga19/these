@@ -1,0 +1,19 @@
+NAME  = run
+SRC = src/
+C_FILE 	= $(SRC)main.cpp
+C_FILE += $(SRC)convexHull.cpp
+
+
+
+all : $(NAME)
+
+$(NAME) :
+	@g++ -g $(C_FILE) -o $(NAME) -std=c++11
+debug	:
+	@rm $(NAME)
+	@g++ $(C_FILE) -o $(NAME) -g -std=c++11
+
+clean 	:
+	@rm $(NAME)
+
+re : clean all
