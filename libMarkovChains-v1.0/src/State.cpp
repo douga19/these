@@ -2,7 +2,7 @@
 
 State::State(int n, vector<Point> c){
   nVertices = n;
-  convexHull = c;
+  convexHull = computeConvexHull(c,n);
   nAdd = nDel = nUp = nLoop = nMov = 0;
 }
 
@@ -41,6 +41,7 @@ void State::updateConvexHull(Point p){
     }
     else nLoop++;
   }
+  setNVertices(convexHull.size());
   nUp++;
 }
 

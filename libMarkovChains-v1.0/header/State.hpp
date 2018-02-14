@@ -29,6 +29,7 @@ public:
   vector<Point> getConvexHull(){ return convexHull; }
 
   void setConvexHull(vector<Point> c){ convexHull = c; }
+  void setNVertices(int n){ nVertices = n; }
 
   void addNeighbor(State* x);
   void updateConvexHull(Point p);
