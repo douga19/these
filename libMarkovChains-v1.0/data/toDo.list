@@ -1,0 +1,12 @@
+1- Faire un test pour d=2 en faisant un nombre de pas égal au diamètre de l'espace métrique (2ck^4/3 + 3k).
+Faire de joli courbes/tableaux sur le temps d'éxecution.
+Calculer l'aire moyenne des polygones (on utilise le théorème ergodique: on fait une moyenne
+des aires des polygones rencontrés lors de la marche) ,
+Recommencer en utilisant une marche d'une longueur égale au carré du diamètre.
+Comparer les résulats obtenus sur les aires moyennes.
+
+2- Faire le test sur le nombre de points extrêmes que l'on eut atteindre au cours d'une marche aléatoire
+de 10.000 pas (puis refaire avec 100.000 et vérifier s'il y a un changement significatif)
+k=10 à 100, d=2 à 20.
+
+3- Il faut vérifier si l'ajout des règles/transitions sur les simplexes améliore le temps de mélange obtenu grâce au couplage.

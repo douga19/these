@@ -35,6 +35,10 @@ public:
   void updateConvexHullWithMove(Point p);
   void display();
   void printStat();
+
+  float surface();
+  int interiorPoint();
+
 };
 
 #endif

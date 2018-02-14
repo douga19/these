@@ -110,3 +110,13 @@ void State::printStat(){
   cout << "Nombre de boucles: " << nLoop << endl;
 
 }
+
+float State::surface(){
+  float s = 0;
+  return s;
+}
+
+int State::interiorPoint(){
+  int n = 0;
+  return 0;
+}
