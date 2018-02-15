@@ -106,7 +106,6 @@ void State::printStat(){
   cout << "------------------------" << endl;
   cout << "Nombre updates: " << nUp << endl;
   cout << "Nombre d'ajouts: " << nAdd << endl;
-  cout << "Nombre de deplacement" << nMov << endl;
   cout << "Nombre de suppressions: " << nDel << endl;
   cout << "Nombre de boucles: " << nLoop << endl;
 

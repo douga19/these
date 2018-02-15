@@ -15,12 +15,21 @@ int max(int* t, int length);
 int main(int argc, char const *argv[]) {
   int d = 2, k = 10;
 
-  //intitialiser le simplexe
+  // Initialisation
   std::vector<Point> s = {{0,0},{0,1},{1,0}};
   State* initState = new State(3,s);
+
+  // Plus grand nombre de points d'un état qu'on peut atteindre pour une marche de 100000 pas
   for (size_t k = 10; k < 100; k++) {
     cout << k << " " << largestSize(k,10000,initState) << endl;
   }
+
+  // Volume moyen des états pour une marche qui atteint le diamètre
+  int dim = floor(2*pow(k,3/4) + 4*(d+1));
+  
+
+
+
 
   // if (argc > 2){
   //   int d = 2, k = atoi(argv[1]);
@@ -72,6 +81,7 @@ int largestSize(int k, int run, State* initialState){
     initialState->updateConvexHull(randomPoint(k));
     t[i] = initialState->getNVertices();
   }
+  initialState->printStat();
   return max(t,run);
 }
 
