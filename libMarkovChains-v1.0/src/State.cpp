@@ -120,3 +120,13 @@ int State::interiorPoint(){
   int n = 0;
   return 0;
 }
+
+void State::printToSage(){
+  int size = convexHull.size();
+  cout << "Polyhedron(vertices = ";
+  cout << "[";
+  for (int i=0; i< size-1; i++){
+    cout << "[" << convexHull[i].x << "," << convexHull[i].y << "],";
+  }
+  cout << "[" << convexHull[size-1].x << "," << convexHull[size-1].y << "]])";
+}

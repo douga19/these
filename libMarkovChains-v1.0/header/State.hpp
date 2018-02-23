@@ -40,6 +40,8 @@ public:
   float surface();
   int interiorPoint();
 
+  void printToSage();
+
 };
 
 #endif

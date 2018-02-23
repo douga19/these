@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string.h>
 #include <cmath>
+#include <fstream>
 #include "../header/Matrix.hpp"
 #include "../header/MarkovChain.hpp"
 #include "../header/convexHull.hpp"
@@ -13,9 +14,13 @@ int largestSize(int k, int run, State* initialState);
 std::vector<Point> randomSimplex(int k);
 int max(int* t, int length);
 float mean(int* t, int length);
+void outputScript(int k, int run, State* s);
 
 int main(int argc, char const *argv[]) {
-  int d = 2, k = 10;
+  int d = 2;
+  int run = stoi(argv[1]);
+
+  //int k = atoi(argv[1]);
 
   // Initialisation
   std::vector<Point> s = {{0,0},{0,1},{1,0}};
@@ -27,20 +32,60 @@ int main(int argc, char const *argv[]) {
   // }
 
   // Plus grand nombre de points d'un état qu'on peut atteindre pour une marche qui realise le diametre
-  int diam;
-  int *t = new int[1000];
-  for (size_t i = 3; i <= 100; i++) {
-     diam = floor(2*pow(i,(float)4/3) + 4*(d+1));
-     for (size_t j = 0; j < 1000; j++) {
-       t[j] = largestSize(i,diam,initState);
-     }
-     cout << i << " " << pow(i,(float)4/3) << " " << diam << " " << mean(t,1000) << endl;
+  // int diam;
+  // int *t = new int[1000];
+  // for (size_t i = 3; i <= 100; i++) {
+  //    diam = floor(2*pow(i,(float)4/3) + 4*(d+1));
+  //    for (size_t j = 0; j < 1000; j++) {
+  //      t[j] = largestSize(i,diam,initState);
+  //    }
+  //    cout << i << " " << pow(i,(float)4/3) << " " << diam << " " << mean(t,1000) << endl;
+  // }
+
+  // Nombre moyen de sommets d'un polygone
+
+  // for (size_t k = 3; k <= 100; k++) {
+  //   int* t = new int[run];
+  //   for (size_t i = 0; i < run; i++) {
+  //     initState->updateConvexHull(randomPoint(k));
+  //     t[i] = initState->getNVertices();
+  //   }
+  //   cout << k << " " <<  mean(t, run) << endl;
+  //   free(t);
+  // }
+
+  // Distribution pour le nombre de sommets
+  int k = stoi(argv[2]);
+  int* valeur = new int[k*k];
+  double* moyenne = new double[k*k];
+  for (size_t i = 0; i < k*k; i++) moyenne[i] = 0;
+
+  for (size_t j = 1; j <= 1000; j++) {
+    for (size_t i = 0; i < k*k; i++) valeur[i] = 0;
+    valeur[3] = 1;
+    for (size_t i = 0; i < run; i++) {
+      initState->updateConvexHull(randomPoint(k));
+      valeur[initState->getNVertices()]++;
+    }
+    for (size_t i = 3; i < k*k; i++) {
+      moyenne[i] = (double) ((j-1)*moyenne[i]/j) + (double) (valeur[i]/j);
+    }
   }
 
-  // Volume 
+  free(valeur);
+
+  for (size_t i = 0; i < k*k; i++) {
+    cout << i << " " << moyenne[i] << endl;
+  }
+  free(moyenne);
 
 
+  // Output pour le calcul du volume sur SAGEmath
+  // Ne prend en compte que le cas où on ne boucle pas
 
+  // for (size_t i = 3; i <= 100; i++) {
+  //   outputScript(i,run,initState);
+  // }
 
   // if (argc > 2){
   //   int d = 2, k = atoi(argv[1]);
@@ -110,4 +155,53 @@ float mean(int* t, int length){
     sum += t[i];
   }
   return (float) sum/length;
+}
+
+void outputScript(int k, int run, State* s){
+  string fileName = "script/100000run/volume_" + to_string(k) + "_" + to_string(run) + ".sage";
+  ofstream file(fileName, ios::out | ios::trunc);
+
+  if(file){
+    int cmpt = 0;
+
+    file << "# COUNT ONLY UPDATED STATES WITH ADDING OR DELETION OF A VERTEX" << endl;
+    file << "# K=" << k << ", RUN=" << run << endl;
+    file << endl;
+    file << "list_" << k << "_" << run << " = [";
+
+    int size = s->getNVertices();
+    file << "Polyhedron(vertices = ";
+    file << "[";
+    for (int i=0; i< size-1; i++){
+      file << "[" << s->getConvexHull()[i].x << "," << s->getConvexHull()[i].y << "],";
+    }
+    file << "[" << s->getConvexHull()[size-1].x << "," << s->getConvexHull()[size-1].y << "]])";
+
+    for (size_t i = 0; i < run; i++) {
+      int prevSize = s->getNVertices();
+      s->updateConvexHull(randomPoint(k));
+      // Condition pour ne prendre en compte que le cas où l'on ne boucle pas
+      if(prevSize != s->getNVertices()){
+        file << ",";
+        int size = s->getNVertices();
+        file << "Polyhedron(vertices = ";
+        file << "[";
+        for (int i=0; i< size-1; i++){
+          file << "[" << s->getConvexHull()[i].x << "," << s->getConvexHull()[i].y << "],";
+        }
+        file << "[" << s->getConvexHull()[size-1].x << "," << s->getConvexHull()[size-1].y << "]])";
+        cmpt++;
+      }
+    }
+    file << "]" << endl;
+    file << "sum = 0." << endl;
+    file << "for p in list_" << k << "_" << run << ":" << endl;
+    file << "\tsum += float(p.volume())" << endl;
+    file << "print " << k << ",\" \", sum/len(list_" << k << "_" << run << ")" << endl;
+    file.close();
+  } else {
+    std::cerr << "ERREUR file not found" << endl;
+  }
+
+
 }
