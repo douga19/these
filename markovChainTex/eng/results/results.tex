@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{color}
+
+%   New commands
+\newcommand{\xt}{$(X_t)$}
+\newcommand{\om}{$\Omega$ }
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%       New Environment
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{propriete}{Property}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{remarque}{Remark}[subsection]
+
+%       Math definitions
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\p}{\mathcal{P}}
+\newcommand{\q}{\mathcal{Q}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\x}{\mathcal{X}}
+\newcommand{\y}{\mathcal{Y}}
+\newcommand{\z}{\mathcal{Z}}
+
+
+
+%       Line numberwithin
+\usepackage[left]{lineno}
+\linenumbers
+
+
+\begin{document}
+\section*{Expected results}
+Here are the expected results I am willing to present on our paper. Though the list should be exhaustive, I think each of us has something to say on what we should present on the final paper.
+
+\subsection*{Introduction of the ergodic theorem}
+The ergodic theorem on Markov Chain requires the irreducibilty and the positive recurrency of the chain, properties we verified on our model. Those properties ensure that our stationnary distribution is unique as well. The ergodic theorem states that for any real-valued function $f$ on our states, its average value (for an enough long walk on our chain) is the same as the expectancy at the stationnary distribution.
+
+\begin{theorem}
+  Let $f$ be a real-valued function defined on $\Omega$. If $(X_t)$ is an irreducible and positive recurrent chain, then for any starting distribution $\mu$, we have:
+  $$
+    \mathbf{P}_\mu \left\{ \lim_{t \rightarrow +\infty} \frac{1}{t} \sum_{s=0}^{t-1} f(X_s) = \sum_{x \in \Omega} f(x)\pi_x \right\} = 1.
+  $$
+\end{theorem}
+
+In another words, it tells that once we has an large $t$ the mean values of $f(X_t)$ over $t$ is the same as if we has picked a state $x$ at the stationnary distribution $\pi$ and calculate $f$ on it, , here $f$ can be viewed as a propety of a polygon: number of vertices, volume ... Thus it means that we can approach the stationnary distribution by an empirical distribution.
+
+\subsection*{Experimental results list}
+
+For all the following results, the process is the following: run a walk on $(X_t)$ for $k$ in range $[3:100]$ with respectively 1000, 10000, then 100000 steps and compare them with a walk that realises the diameter $\mathcal{D}_{X_t}\leq{2ck^{3/4} + 4(d+1)}$ for $c=1$ and $d=2$. All those results are relevant since it gives us an idea of the distribution on those properties when one reaches the stationnary distribution.
+
+\begin{enumerate}
+  \item Number of vertices of a visited polygon: J'ai tout ce qu'il faut, il me reste à lancer les expérimentations.
+
+  \item Largest number of vertices reached in a long run: J'ai les résultats pour 10000, 100000, et le diametre.
+
+  \item Mean volume of polygon: J'ai les résultats pour 1000 et j'aurai assez rapidement le reste.
+\end{enumerate}
+
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[c]{.4\linewidth}
+      \resizebox{\columnwidth}{!}{\input{volume1000}}
+    \end{minipage}
+    \begin{minipage}[c]{.4\linewidth}
+      \resizebox{\columnwidth}{!}{\input{figure}}
+    \end{minipage}
+    \caption{Mean volume of a polygon in a long run, $k \in [3-100]$}
+    \label{10krun}
+  \end{center}
+\end{figure}
+
+\subsection*{Theorical result}
+Upper bound on the mixing time: this is an important result which gives us an idea on the effectiveness of the sampler.
+
+\end{document}

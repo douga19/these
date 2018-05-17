@@ -1,0 +1,227 @@
+%%% ====================================================================
+%%% @LaTeX-file{
+%%%   filename  = "ijmsample.tex",
+%%%   copyright = "Copyright 1995, 1999 American Mathematical Society,
+%%%                2005 Hebrew University Magnes Press,
+%%%                all rights reserved.  Copying of this file is
+%%%                authorized only if either:
+%%%                (1) you make absolutely no changes to your copy,
+%%%                including name; OR
+%%%                (2) if you do make changes, you first rename it
+%%%                to some other name.",
+%%% }
+%%% ====================================================================
+\NeedsTeXFormat{LaTeX2e}% LaTeX 2.09 can't be used (nor non-LaTeX)
+[1994/12/01]% LaTeX date must December 1994 or later
+\documentclass{ijmart}
+%    Some definitions useful in producing this sort of documentation:
+\chardef\bslash=`\\ % p. 424, TeXbook
+%    Normalized (nonbold, nonitalic) tt font, to avoid font
+%    substitution warning messages if tt is used inside section
+%    headings and other places where odd font combinations might
+%    result.
+\newcommand{\ntt}{\normalfont\ttfamily}
+%    command name
+\newcommand{\cn}[1]{{\protect\ntt\bslash#1}}
+%    LaTeX package name
+\newcommand{\pkg}[1]{{\protect\ntt#1}}
+%    File name
+\newcommand{\fn}[1]{{\protect\ntt#1}}
+%    environment name
+\newcommand{\env}[1]{{\protect\ntt#1}}
+\hfuzz1pc % Don't bother to report overfull boxes if overage is < 1pc
+
+%       Theorem environments
+
+%% \theoremstyle{plain} %% This is the default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{ax}{Axiom}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem*{notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem{step}{Step}
+
+%\numberwithin{equation}{section}
+
+\newcommand{\thmref}[1]{Theorem~\ref{#1}}
+\newcommand{\secref}[1]{\S\ref{#1}}
+\newcommand{\lemref}[1]{Lemma~\ref{#1}}
+
+
+%       Math definitions
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\st}{\sigma}
+\newcommand{\XcY}{{(X,Y)}}
+\newcommand{\SX}{{S_X}}
+\newcommand{\SY}{{S_Y}}
+\newcommand{\SXY}{{S_{X,Y}}}
+\newcommand{\SXgYy}{{S_{X|Y}(y)}}
+\newcommand{\Cw}[1]{{\hat C_#1(X|Y)}}
+\newcommand{\G}{{G(X|Y)}}
+\newcommand{\PY}{{P_{\mathcal{Y}}}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\per}{per}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\non}{non}
+\DeclareMathOperator{\cf}{cf}
+\DeclareMathOperator{\add}{add}
+\DeclareMathOperator{\Cham}{Cham}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\meas}{meas}
+\DeclareMathOperator{\seg}{seg}
+
+%    \interval is used to provide better spacing after a [ that
+%    is used as a closing delimiter.
+\newcommand{\interval}[1]{\mathinner{#1}}
+
+%    Notation for an expression evaluated at a particular condition. The
+%    optional argument can be used to override automatic sizing of the
+%    right vert bar, e.g. \eval[\biggr]{...}_{...}
+\newcommand{\eval}[2][\right]{\relax
+  \ifx#1\right\relax \left.\fi#2#1\rvert}
+
+%    Enclose the argument in vert-bar delimiters:
+\newcommand{\envert}[1]{\left\lvert#1\right\rvert}
+\let\abs=\envert
+
+%    Enclose the argument in double-vert-bar delimiters:
+\newcommand{\enVert}[1]{\left\lVert#1\right\rVert}
+\let\norm=\enVert
+
+%\setcounter{tocdepth}{5}
+
+\begin{document}
+\title{Lattice simplices in $[0,k]^d$}
+\author[Lionel Pournin]{Lionel Pournin}
+\address{LIPN, Universit{\'e} Paris 13, Villetaneuse, France}
+\email{lionel.pournin@univ-paris13.fr}
+
+%\date{Received on MONTH, YEAR}
+%\issueinfo{VOL}{NUM}{MONTH}{YEAR}
+%\doiinfo{10.1007/DOI-NUMBER}
+\begin{abstract}
+Consider a lattice simplex $\S$ contained in the cube $[0,k]^d$ where $k$ is a positive integer and $d$ is at least $2$. It is shown in this note that there exists a lattice point $v\in[0,k]^d$ such that the convex hull of $S\cup\{v\}$ admits, as vertices, $v$ and all the vertices of $\S$.
+\end{abstract}
+\maketitle
+%\tableofcontents
+
+In this note, a lattice $(d,k)$-polytope is a polytope $P\subset\mathbb{R}^d$ whose coordinates of vertices belong to $\{0, ..., k\}$. Note that, by this definition, the dimension of a lattice $(d,k)$-polytope is possibly less than $d$.
+
+Consider a $d$-dimensional lattice $(d,k)$-polytope $\S$ and assume that $\S$ is a simplex. Note that we restrict the claim in the abstract to $\S$ being $d$-dimensional, but this will be shown to be without loss of generality later (see Lemma \ref{Lem.C}). Let $\mathcal{V}$ be the set of vertices of $\S$. For any $u\in\mathcal{V}$, denote by $H_u$ the affine hull of the facet of $\S$ opposite $u$, and by $H_u^-$ the closed half-space of $\mathbb{R}^d$ limited by $H_u$ that does not contain $u$. For any $v\in\mathcal{V}$, the set
+$$
+C_v=\bigcap_{u\in\mathcal{V}\mathord{\setminus}\{v\}}H_u^-
+$$
+is a $d$-dimensional cone pointed at $v$. This cone is exactly the set of the points $x\in\mathbb{R}^d$ such that the convex hull of $S\cup\{x\}$ does not admit $v$ as a vertex. By this remark, we have the following lemma.
+
+\begin{lem}\label{Lem.A}
+Let $x$ be a lattice point in $[0,k]^d$. The convex hull of $S\cup\{x\}$ admits, as vertices, $x$ and all the vertices of $\S$ if and only if $x$ does not belong to $\S$ and, for all $v\in\mathcal{V}$, $x$ does not belong to $C_v$.
+\end{lem}
+
+Call $\gamma=\min\{x_1:x\in{S}\}$. Consider the following hyperplane of $\mathbb{R}^d$:
+$$
+X=\{x\in\mathbb{R}^d:x_1=\gamma\}
+$$
+
+Denote by $X^-$ the open half-space of $\mathbb{R}^d$ bounded by $X$ and that does not contain $\S$. By construction, the intersection $S\cap{X}$ is a non-empty, proper face of $\S$. This face will be denoted by $F$ in the following. Since $\S$ is a simplex, it admits another, non-empty face $F^\star$ whose vertices are exactly the vertices of $\S$ that do not belong to $F$.
+
+By construction,
+$$
+\mathrm{dim}(F)+\mathrm{dim}(F^\star)=d-1\mbox{.}
+$$
+
+In particular, there exists a vector $c$ that is orthogonal to both $F$ and $F^\star$. Consider the hyperplane $Y$ of $\mathbb{R}^d$ that admits $c$ as a normal vector and such that $F^\star\subset{Y}$. The intersection $S\cap{Y}$ is precisely $F^\star$. Denote by $Y^-$ the closed half-space of $\mathbb{R}^d$ bounded by $Y$ that does not contain $F$. It will be assumed that $c$ has norm $1$ and that it points towards $Y^-$. Let
+\begin{equation}\label{eq.A}
+\delta=\min\{c\mathord{\cdot}x:x\in{X\cap[0,k]^d}\}\mbox{.}
+\end{equation}
+
+Further denote $G=\{x\in{X\cap[0,k]^d}:c\mathord{\cdot}x=\delta\}$. In the statement of the following lemma, $\mathrm{aff}(F)$ denotes the affine hull of $F$.
+
+\begin{lem}\label{Lem.B}
+If $v$ is a vertex of $\S$, then
+$$
+C_v\subset\mathrm{aff}(F)\cup{X^-}\cup{Y^-}\mbox{.}
+$$
+\end{lem}
+\begin{proof}
+First observe that, if $\S$ is a face of $\S$ and $H$ is a hyperplane of $\mathbb{R}^d$ that intersects $\S$ exactly along $\S$, then
+$$
+\bigcap_{u\in\mathcal{V}\mathord{\setminus}s}H_u^-\subset{H^-}\mbox{,}
+$$
+where $H^-$ is the closed half space of $\mathbb{R}^d$ bounded by $H$ and disjoint from the interior of $\S$. Further observe that the intersection of $H$ with
+$$
+\bigcap_{u\in\mathcal{V}\mathord{\setminus}s}H_u^-
+$$
+is precisely the affine hull of $\S$. As a direct consequence, taking in turn $s=F^\star$ and $s=F$, one obtains that, if $v$ is a vertex of $F$, then $C_v\subset\mathrm{aff}(F)\cup{X^-}$ and if $v$ is a vertex of $F^\star$, then $C_v\subset{Y^-}$. The result therefore holds because any vertex of $\S$ is either a vertex of $F$ or a vertex of $F^\star$.
+\end{proof}
+
+As an immediate consequence of this and Lemma \ref{Lem.A}, for any lattice point $x\in[0,k]^d$ that does not belong to $X^-$, to $Y^-$, or to the affine hull of $F$, the convex hull of $S\cup\{x\}$ admits, as vertices, $x$ and all the vertices of $\S$.
+
+Recall that $c$ is orthogonal to $F$ and $F^\star$. As a consequence, the map $x\mapsto{c\mathord{\cdot}x}$ is constant within $F$ and within $F^\star$. Call $\varepsilon$ the value of $c\mathord{\cdot}x$ when $x\in{F}$ and $\varepsilon^\star$ the value of $c\mathord{\cdot}x$ when $x\in{F^\star}$. Since $F$ and $Y^-$ are disjoint, $\varepsilon<\varepsilon^\star$. Moreover, by (\ref{eq.A}), $\delta\leq\varepsilon$. Observe that if the latter inequality is strict, then $G$ is disjoint from both $\mathrm{aff}(F)$ and $Y^-$. By definition, it is also disjoint from $X^-$ and the following lemma is then obtained as a consequence of Lemmas \ref{Lem.A} and \ref{Lem.B}.
+\begin{lem}\label{Lem.BC}
+If $\delta<\varepsilon$, then for any lattice point $x\in{G}$, the convex hull of $S\cup\{x\}$ admits, as vertices, $x$ and all the vertices of $\S$.
+\end{lem}
+
+If, on the contrary, $\delta$ and $\varepsilon$ coincide, then $F\subset{G}$. This situation is familiar: we are looking at a lattice simplex $F$ contained in a (possibly degenerate) lattice cube $G$. If the dimension of $G$ is greater than the dimension of $F$, then the following lemma provides the desired result.
+
+\begin{lem}\label{Lem.C}
+If $k$ and $d$ are positive and if $P$ is a lattice $(d,k)$-polytope of dimension less than $d$ then there exists a lattice point $x$ that belongs to $[0,k]^d$ but that does not belong to the affine hull of $P$.
+\end{lem}
+\begin{proof}
+If $P$ is a lattice $(d,k)$-polytope of dimension less than $d$, then the intersection $I$ of its affine hull with $[0,k]^d$ cannot contain more than $(k+1)^{d-1}$ lattice points. Indeed, one can always project $I$ orthogonally on a facet of $[0,k]^d$ in such a way that the dimension of the projection is not less than that of $I$. Such a projection induces an injection from the lattice points in $I$ into the lattice points in the facet on which the projection is made.
+
+Now observe that $[0,k]^d$ contains $(k+1)^d$ lattice points. Since $k$ is positive, $(k+1)^{d-1}<(k+1)^d$ and the lemma is proven.
+\end{proof}
+
+Hence, it remains to solve the case when $F$ is a subset of $G$ and both have the same dimension. If this dimension is at least $2$, then the strategy is to argue by induction on $d$. The base case of the induction is given by the following lemma.
+
+\begin{lem}\label{Lem.D}
+If $d=2$ then there exists a lattice point $x\in[0,k]^2$ such that the convex hull of $S\cup\{x\}$ admits, as vertices, $x$ and all the vertices of $\S$.
+\end{lem}
+\begin{proof}
+Probably just a careful, hopefully short disjunction. Rado, Julien?
+\end{proof}
+
+The case when $F$ is a subset of $G$ and their common dimension is either $0$ or $1$ has to be treated separately.
+
+\begin{lem}\label{Lem.E}
+Assume that $d$ is greater than $2$. If $G$ has dimension at most $1$ and admits $F$ as a subset, then there exists at least one lattice point $x$ in $[0,k]^d$ that does not belong to $\mathrm{aff}(F)\cup{X^-}\cup{Y^-}$.
+\end{lem}
+\begin{proof}
+Assume that the dimension of $G$ is $0$ or $1$ and that $F$ is a subset of $G$. Because of the latter assumption, $\delta=\varepsilon$. Further assume that every lattice point in $X\cap[0,k]^d$ belongs to either $\mathrm{aff}(F)$ or $Y^-$. Since $Y^-$ is the set of points $x\in\mathbb{R}^d$ such that $c\mathord{\cdot}x\geq\varepsilon^\star$, this assumption yields that any lattice point $x$ in $X\cap[0,k]^d$ such that $c\mathord{\cdot}x<\varepsilon^\star$ satisfies $c\mathord{\cdot}x=\delta$.
+
+In particular, the only lattice points in $X\cap[0,k]^d$ that may belong to $Y$ have distance exactly $1$ to some lattice point in $G$.
+
+Now consider the set $N$ of the points $x$ in $[0,k]^d$ whose orthogonal projection on $X$ belongs to $G$ and such that $x_i=\gamma+1$. By construction, $\gamma<k$ and therefore, $N$ is non-empty. More precisely, $N$ is made up of a single point if $G$ has dimension $0$, and $N$ is a line segment parallel to $G$ if $G$ has dimension $1$. In particular, the map $x\mapsto{c\mathord{\cdot}x}$ is constant within $N$. Call this constant $\eta$. If $\eta\geq\varepsilon^\star$
+, then the only lattice points $x$ in $[0,k]^d$ such that $x_i\geq\gamma$ that may belong to $Y$ are the ones whose distance to some lattice point in $G$ is exactly $1$. Among these candidates, the only ones that can also be vertices of $\S$ are the lattice point in $N$. Indeed, all the other candidates belong to $X$. This is impossible because $\S$ would then be contained in the convex hull of $G\cup{N}$ whose dimension is either $1$ or $2$ depending on the dimension of $G$, whereas the dimension of $\S$ is at least $3$.
+
+It follows from this contradiction that $\eta<\varepsilon^\star$. In other words, $N$ is disjoint from $Y^-$. By construction, $N$ is also disjoint from $X^-$ and from the affine hull of $F$. As $N$ contains lattice points, this proves the lemma.
+\end{proof}
+
+We are now ready to prove the desired result.
+
+\begin{thm}\label{thm.A}
+There exists a lattice point $x$ in the cube $[0,k]^d$ such that the convex hull of $S\cup\{x\}$ admits, as vertices, $x$ and all the vertices of $\S$.
+\end{thm}
+\begin{proof}
+We need to write the induction carefully. Rado, Julien?
+\end{proof}
+
+%\bibliography{bibfile}
+%\bibliographystyle{ijmart}
+
+\end{document}
+\endinput

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: MarkovLatticePolytopes.aux
+The style file: alpha.bst
+Database file #1: biblio.bib.bib
+Warning--empty year in BorgwardtDeLoeraFinhold2016
+Warning--empty year in DezaManoussakisOnn2018
+You've used 20 entries,
+            2543 wiz_defined-function locations,
+            692 strings with 7912 characters,
+and the built_in function-call counts, 8185 in all, are:
+= -- 831
+> -- 394
+< -- 8
++ -- 139
+- -- 132
+* -- 575
+:= -- 1361
+add.period$ -- 62
+call.type$ -- 20
+change.case$ -- 124
+chr.to.int$ -- 20
+cite$ -- 22
+duplicate$ -- 318
+empty$ -- 585
+format.name$ -- 155
+if$ -- 1660
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 22
+newline$ -- 104
+num.names$ -- 60
+pop$ -- 116
+preamble$ -- 1
+purify$ -- 146
+quote$ -- 0
+skip$ -- 261
+stack$ -- 0
+substring$ -- 485
+swap$ -- 48
+text.length$ -- 8
+text.prefix$ -- 4
+top$ -- 0
+type$ -- 152
+warning$ -- 2
+while$ -- 85
+width$ -- 26
+write$ -- 258
+(There were 2 warnings)

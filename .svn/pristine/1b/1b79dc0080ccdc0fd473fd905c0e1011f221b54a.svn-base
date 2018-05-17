@@ -1,0 +1,23 @@
+\relax 
+\citation{levin2009markov}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces A Markov chain such that: $\Omega = \{x,y\}$, $P(x,x) = 1-p$, $P(x,y) = p$, $P(y,x) = q$ and $P(y,y) = 1-q$}}{2}}
+\newlabel{fig:fig1}{{1}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Reminders}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Definitions}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Properties}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Irreducibility}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Periodicity}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Symerty}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Hitting time and first return time}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Recurrence of a state}{3}}
+\newlabel{recurrence}{{2.2.5}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Stationnary distribution}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Mixing time}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Existence and uniqueness of $\pi $}{4}}
+\newlabel{prop:irr_ap}{{2.5.1}{4}}
+\newlabel{prop:uniqueness}{{2.5.2}{5}}
+\newlabel{prop:uniformity}{{2.5.3}{5}}
+\bibstyle{plain}
+\bibdata{biblio.bib}
+\bibcite{levin2009markov}{1}

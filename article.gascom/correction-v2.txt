@@ -1,0 +1,403 @@
+
+Bon, je viens de terminer ma lecture. J'ai encore une liste interminable de corrections, mais le papier est vraiment de mieux en mieux. Il faudra qu'on parle (demain ?) de cette histoire de couplage et de ces epsilon (j'ai l'air obsédé par ça, mais je ne le suis pas ;))... Voici donc mes commentaires :
+
+1) ligne 18 : on ne dit pas trop “researchs” (c’est un mot qui s’utilise au singulier). Je propose de remplacer “A number of researchs” par “A number of articles“
+
+2) ligne 19 : “for a small values” -> “for small values”
+
+3) ligne 27 : “combinatorial explosion” est imagé (et marrant ;)) mais un peu trop original à mon avis. Je propose de remplacer “because of the combinatorial explosion” par “because the combinatorics quickly become intractable”
+
+4) Lignes 27-28 : il faut remplacer
+
+“allows to test conjectures on large sized objects, obtain experimental results on their average propreties and on the average complexity of algorithms applied to them“
+
+par
+
+“allows to investigate the properties of large-sized objects and the average behavior of the algorithms applied to them”
+
+C’est très important de ne pas mentionner la génération aléatoire pour le test de conjectures (et même si en pratique on va essayer de faire ça, mieux vaut ne pas l’écrire). La raison est que pour beaucoup de gens (et je suis enclin à être d’accord avec eux), les conjectures sur les polytopes sont toujours vraies sur les polytopes “typiques”. Donc évitons de laisser à la postérité quelque chose qu’on peut nous reprocher si facilement. D’autre part, il n’est pas nécessaire d’être trop précis ici (“complexity”), si on laisse ça un peu dans le vague, on est en principe à la fois plus fort (puisqu’on est moins précis sur ce qu’on peut faire, et donc plus général dans l’esprit), et on s’évite des critiques ciblées faciles.
+
+5) ligne 30 : enlève le “:” après “such as”
+
+6) ligne 32 : “though” -> “but” (pour dire plus clairement le “tradeoff” entre les deux)
+
+7) ligne 34 : “we design” -> “we present” (on a déjà élaboré ce générateur, ce qu’on fait dans ce papier est simplement de le présenter). Et aussi, très important : “random sampler of lattice (d,k)-polytopes” -> “random sampler of $d$-dimensional lattice (d,k)-polytopes” (sinon la question de la connexité est très différente !)
+
+8) ligne 34-37 : évitons le “Unfortunately” (car c’est aussi ça qui rend le sujet intéressant !) et le “is not known” (on sait quelques trucs quand-même). Je propose de remplacer la phrase
+
+“Unfortunately, the combinatorics of lattice (d,k)-polytopes is not known: in the general case, there is no known closed formula and no asymptotic estimation of the number of the object of a given size”
+
+par les phrases (les phrases courtes me semblent souvent plus claires) :
+
+“The combinatorics of lattice $(d,k)$-polytopes remains elusive. For instance, there is as yet no closed formula and no asymptotic estimation for their number as a function of $d$ and $k$”
+
+9) ligne 38 : “and Boltzmann samplers” -> “and the Boltzmann samplers”
+
+10) ligne 38 : “seem inapplicable at the moment” -> “seem inapplicable at the moment for arbitrary $d$ and $k$ ” (comme ça, on introduit la phrase et la discussion qui suit)
+
+11) lignes 38-39 : “In the specific case of d = 2,” -> “Note that, when $d=2$,”
+
+12) ligne 39 : “polyomino” -> “polyominoes”
+
+13) ligne 41 : “gave” -> “give” (le “moment” d’un article est quand il est lu, donc il est éternellement au présent, sinon on dit implicitement, si on tire ce fil, que ce qui est important est de publier et non pas de faire quelque chose d’intéressant)
+
+14) ligne 43-44 : “Another case is “k=1” in which any set of d-dimensional points is a convex hull” -> “Another easier case is when $k=1$. Indeed, any set of lattice points contained in $[0,1]^d$ is the vertex set of a lattice $(d,1)$-polytope”
+
+En effet, n’oublie pas que, géométriquement, ce qui est de dimension d c’est toujours un ensemble de points et pas les points eux-même qui sont de dimension 0 (même si ils ont d coordonnées).
+
+15) ligne 44-46 : “points” -> “lattice points” et “rejecting polytopes that are not d-dimensional” -> “rejecting the resulting polytopes when they are not $d$-dimensional”
+
+16) lignes 48-48 : enlève “, that is the $(d,k)$-polytopes of dimension exactly d”. C’est pratiquement une répétition du bout de phrase qui précède. Ou alors, remplace
+
+“all d-dimensional lattice (d, k)-polytopes, that is the (d, k)-polytopes of dimension exactly d”
+
+par
+
+“all the lattice $(d,k)$-polytopes of dimension exactly $d$” (je préfère cette deuxième option, si jamais :D)
+
+17) ligne 50 : “$k\geq2$” -> “positive $k$”. Je sais bien que le générateur est plus simple lorsque $k=1$, par exemple puisqu’on a pas d’enveloppes convexes à calculer mais ce générateur et celui qu’on présente coincident en théorie lorsque k=1 et toutes les preuves marchent encore, donc on peut (et on doit) dire que tout ça est encore vrai pour k=1 ici.
+
+18) lignes 60-62 : Remplace
+
+“Then to sample uniformaly a random lattice (d,k)-polytope, one has to run a random walk on the Markov chain until one is close enough to the stationary distribution.”
+
+par
+
+“In order to sample a uniform random lattice (d,k)-polytope, we will run a random walk on our Markov chain until we are close enough to the stationary distribution.”
+
+(“has to” suggère que c’est la seule possibilité de faire, mais on n’a pas besoin de dire ça, d’autant plus que c’est probablement faux)
+
+19) ligne 67 : il faut que tu dises quelque chose sur la section 4 (tu mentionnes toutes les autres sections mais pas celle-là). Après, “This is shown in Section 3.”, ajoute quelque chose comme :
+
+“Section 4 presents a general lower bound on the mixing time of our Markov chain.”
+
+20) ligne 70 : quelque chose est un peu gênant ici car dans toute l’introduction on ne parle que d’une chaîne de Markov et là on dit qu’il y en a deux. Pour arranger ça je propose de remplacer
+
+“In the following, we introduce two Markov chains.”
+
+par
+
+“We will introduce two variants of our Markov chain.”
+
+21) ligne 71 : “an uniform” -> “a uniform”
+
+22) lignes 71-72 : “Also, the proof of its validity” -> “It turns out that the proof of the irreducibility of this variant”
+
+23) ligne 73 : “simplifies the proof” -> “simplifies the proof of the irreducibility”
+
+24) lignes 73-74 : enlève “and improve the sampler’s efficiency”  Le seule cas où on pourrait laisser ça serait si on avait des expériences ou des preuves que le deuxième générateur est plus efficace, ou au moins si on donnait des arguments dans le papier mais on ne le fait pas, donc n’écrivons pas ça, d’autant plus que ça ne nous sert pas beaucoup de le mentionner ici.
+
+25) lignes 100-101 : “until the stationary distribution is reached” -> “until we are close enough to the stationary distribution”
+
+26) Algorithm 1, étape 1 : “choose at random a (d,k)-simplex“ -> “sample a random lattice $(d,k)$-simplex“ et :
+
+“with V as vertex set” -> “with vertex set $\mathcal{V}$”
+
+(sinon ça suggère qu’on a V sous la main et qu’on fait en sorte que P ait V comme ensemble de sommets.
+
+27) ligne 104 : “In the second Markov chain, we describe” -> “In the other variant of our Markov chain, we introduce”
+
+28) ligne 108 : il manque in “[“ dans $\mathcal{V}\mathord{\setminus}\{\x}]\cup\{y\}$ (ça devrait être $[\mathcal{V}\mathord{\setminus}\{\x}]\cup\{y\}$)
+
+29) Algorithm 2, étape 1 : même remarque que 26)
+
+30) Algorithm 2, étapes 7 et 8 : il manque dans ces deux lignes le même “[“ que dans la remarque 28)
+
+31) lignes 116-118 : “An important result on Markov chains shows that an irreducible, aperiodic and symmetric Markov chain converges to the uniform for any starting distribution [15].” -> “It is well known that an irreducible, aperiodic, and symmetric Markov chain has a uniform stationary distribution [15].”
+
+Deux remarques ici :
+
+* la première c’est que quand on énumère au moins trois choses dans une phrase (ici irreducible, aperiodic, symmetric), en anglais, le “and” ou le “or” est précédé d’une virgule (qui s’appelle la “Oxford comma”). Ca n’est pas complètement obligatoire mais ça peut être apprécié.
+
+* On a pas besoin de parler de starting distribution puisqu’on ne l’utilise jamais et que la distribution stationnaire est du coup une propriété de la chaîne elle-même.
+
+32) ligne 118 : “those” -> “these”
+
+33) ligne 119 : “, thus” -> “. Thus,”
+
+34) lignes 120-121 : “we have built an uniform sampler for d-dimensional lattice $(d,k)$-polytopes” -> “our $d$-dimensional lattice $(d,k)$-polytopes samplers are uniform” (ce qui compte n'est pas qu'on l'ait construit mais qu'il soit uniforme)
+
+35) ligne 124 : “propreties” -> “properties” (il me semble que tu a fait plusieurs fois cette coquille à d’autres endroits que je n’ai peut être pas notés)
+
+36) ligne 126 : “Recall that the irreducibility means that all the states of Ω” -> “A Markov chain is irreducible when all of its states”
+
+37) ligne 127 : $\Gamma(d,k)$ n’est pas orienté dans notre cas (et, oui, je sais qu’en général il peut être orienté, mais là on a la même probabilité des deux cotés de l’arête donc on peut se permettre ça). Les gens verront bien dans le reste de la preuve que c’est un graphe qui n’est pas orienté (et si on dit qu’il est orienté, la définition de ce graphe dans l’appendice A est en contradiction avec celle qu’on fait là). Donc : “In other words the oriented graph” -> “In other words, the graph”
+
+38) ligne 128 : “strongly connected” -> “connected”
+
+39) ligne 130 : plusieurs choses ici.
+
+* Si on voulait dire ça, il faudrait plutôt dire “Due to lack of space” ou “due to the page limit” cat “a lack of space” peut suggérer qu’il pourrait y avoir plusieurs "lack of spaces".
+
+* Ensuite, ça n’est pas élégant de  raconter ce genre de choses au lecteur (qui devient alors le témoin de notre incapacité à utiliser les pages mieux que ce qu'on ne fait.) Donc je propose de remplacer
+
+“Due to a lack of space, the complete proof is omitted”
+
+par
+
+“The proof is quite involved and due to its length, we omit it here”
+
+Si on écrit ça comme ça, on ne dit plus que c’est l’espace qui nous manque (ce qui revient à rejeter le problème sur une cause extérieure, et à parler de notre incapacité à y faire face) mais la preuve qui est longue (parce qu’elle est “involved”), et donc on assume le problème nous-même et on parle de notre capacité à y faire face (ce qui est beaucoup plus élégant ;D)
+
+Et dans la footnote 1 : “the complete proof of the connectedness of $\Gamma(d,k)$ is provided in Appendix B”
+
+40) lignes 131-133 : Je propose de remplacer
+
+“An important piece of the proof is that for any lattice simplex there exists a point in [0,k]d that can be added in order to obtain a new lattice (d, k)-polytope of Ω.”
+
+par
+
+“An important piece of the proof consists in showing that, given a lattice $(d,k)$-simplex $S$, there always is at least one lattice point in $[0,k]^d$ that can be inserted in $S$. It turns out that proving this seemingly simple statement is quite tricky.”
+
+41) ligne 140 : “all the states of $\Omega$ has” -> “all the states of $\Omega$ have”
+
+42) ligne 152 : “the same manner we did” -> “the same way as”
+
+43) ligne 156 : “a a” -> “a” et “is a set” -> “is the convex hull of a set”
+
+44) Page 6, dans la preuve de la symétrie (ii), 4ème ligne : il y a une phrase qui commence par un “If” mais sans “then”, et qui contient des typos.) Je propose de corriger ça en remplaçant
+
+“If they they only differs by a single vertex, meaning all vertex
+of S belongs to S′ apart from a vertex x, and respectively all vertices of S
+belongs to S′ apart from a vertex y.”
+
+par
+
+“If they only differ by a single vertex, then all the vertices of $S$ belong to $S’$ apart from a vertex $x$, and all the vertices of $S’$ belongs to $S$ apart from a vertex $y$.”
+
+45) Page 6, dans la preuve de la symétrie (ii), ligne 7 : “chose” -> “choose” et ”then move it on” -> “and then to move it to” (l'anglais est une langue qui permet bien de décrire le mouvement contrairement au français, par exemple "to" qui indique à la fois un mouvement "vers", et un mouvement "jusqu'à")
+
+46) Page 6, dans la preuve de la symétrie (ii), lignes 8-9 : “We use the same reasoning to prove the transition going from S′ to S.” -> “The same argument allows to treat the transition from $S’$ to $S$.” et dans l’équation en dessous, “differs” -> “differ”
+
+47) Page 6, dans la preuve de l’apériodicité (iii), ligne 2 : “where we have” -> “with” et “to have a loop” -> “to loop”
+
+48) ligne 164 : “has the same period 1. The chain remains aperiodic.” -> “has period 1. The chain therefore remains aperiodic.”
+
+49) lignes 166-167 : “Theorem 1 and Theorem 2 that the both Markov chains” -> “Theorem 1 and of Theorem 2 that the two variations of our Markov chain”
+
+50) lignes 167-168 : “Thus, the lattice $(d,k)$-polytope we obtain from the both samplers is uniformly sampled from Ω.” -> “Thus, the lattice $(d,k)$-polytopes obtained from both samplers are picked uniformly from $\Omega$.”
+
+51) ligne 175 : pourquoi epsilon doit-il être <1/2 ? (et, ligne 174, on dit “with respect to”). Si on parle de ce epsilon, il faut dire ce qu’il quantifie exactement (c’est le epsilon de la convergence en distribution ?)…
+
+52) ligne 177 : “a accurate“ -> “an accurate“
+
+53) lignes 178-179 : Si on dit ça (“and for several random samplers…”), on a l’air d’être sur la défensive, surtout si on cite des papiers (pourquoi ceux-là ?) Je propose de ne pas le dire. Au pire, si on a des remarques de rapporteurs, on leur répondra ça à eux, mais ne le mettons pas dans le papier, ce serait retenu pour la postérité que nous avons pointé du doigts ces deux trucs là. Evitons-nous ça.
+
+54) ligne 180 : “means diameter of its graph” -> “means the diameter of its graph”
+
+55) lignes 180-182 : “maximal shortest distance a walk on the chain needs to reach” -> “longest geodesic walk on the chain between”
+
+56) lignes 185-186 : “contained in the square $[0,k]^2$ has been found independently by [1, 19, 2]” -> “contained in a disk or a square has been studied in [1,19,2]” (dans [2], ils utilisent un disque, mais ce sont bien des points entiers. Dans [3], c’est une boule de dimension d à la place du disque. Du coup studied à la place de “found” parce que même si ces résultats sont proches, ils sont tout de même différents)
+
+57) ligne 192 : “a bound“ -> “bounds”
+
+58) ligne 193 : “on the number of j-dimensional faces” -> “on the number of faces of each dimension” et “the ball” -> “the $d$-dimensional ball”
+
+59) ligne 194 : enlève “For any 0≤j≤d−1.”
+
+60) ligne 195 : “In pardicular when j = 0, we get the number of vertices.” -> “In particular they provide bounds on its number of vertices.”
+
+61) ligne 196 : “this lower bound” -> “the following lower bound”
+
+62) ligne 199 : “the first sampler” -> “the sampler corresponding to Algorithm 1”
+
+63) ligne 202 : “Empirical estimations we conduct” -> “The empirical estimations we conduct” et “on the ergodic theory and the” -> “on ergodic theory and on the”
+
+64) ligne 203 : “Markov chain” -> “Markov chains” (deux fois)
+
+65) légende de la figure 2, ligne 3 : “vertices of polygon” -> “vertices of a polygon”
+
+66) ligne 208 : “distribution,see” -> “distribution, see”
+
+67) ligne 224 : “with different distribution”. N’est pas plutôt “from different initial states” ?
+
+68) ligne 226 : “they will move following a the same distribution, which is the stationnary” -> “they will both move following the stationary distribution”
+
+69) ligne 227 : “Though, it gives no information about the time” -> “Though, this gives us little information about the actual time”
+
+70) ligne 228 : “reaches the stationary” -> “reaches the stationary distribution”
+
+71) ligne 229 : “Our computation” -> “Our computations”
+
+72) ligne 232 : “real time execution” -> “execution times”
+
+Le 21/03/2018 18:47, Rado Rakotonarivo a écrit :
+> Salut,
+>
+> J'envoie ici le dernier draft après la séance de relecture de ce matin
+> avec Julien. Un petit compte rendu:
+>
+> - On a ajouter un paragraphe à l'introduction pour bien expliquer la
+> génération aléatoire et mettre en emphase la difficulté de notre
+> problème.
+>
+> - On a également modifier la section 2 pour introduire dès le début le
+> fait qu'on ait deux chaines de Markov et pourquoi on fait cela.
+>
+> - Simplification de certaines parties de la preuve pour la section 3.
+>
+> - Ajout de la borne assymptotique de Barany Larmann dans la section 4.
+>
+> - J'ai également fait un petit réarrangement de la section résultats
+> mais ce n'est pas encore définitif.
+>
+> Bonne lecture.
+>
+> Rado.
+>
+> Ps: Merci pour le café Julien
+>
+>
+> Le 20/03/2018 à 13:29, Lionel Pournin a écrit :
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> urnals/bull/2008-45-03/S0273-0979-08-01210-X/S0273-0979-08-01210-X.pdf
+>>
+>> Le 20/03/2018 13:20, Rado Rakotonarivo a écrit :
+>>> re,
+>>>
+>>> dernier draft
+>>>
+>>>
+>>> Le 19/03/2018 à 10:21, Lionel Pournin a écrit :
+>>>> Salut Rado,
+>>>>
+>>>> Il reste une semaine avant la soumission, alors voilà le programme qu'on propose avec Julien pour le début de la semaine :
+>>>>
+>>>> Aujourd'hui :
+>>>> Julien code la version de dimension d>=3 (l'objectif serait d'avoir des essais en dimension 3 et peut-être 4 avant la fin de la semaine) et toi tu termine les corrections du papier :
+>>>>
+>>>> - Tu dois retravailler la partie expérimentale pour que le texte explique mieux les figures/tables et et les figures soient plus claires. Par exemple, il faudrait que tu remplace les trois histogrammes par une seule figure avec trois courbes pour qu'on puisse faire facilement la comparaison (et dans le texte il faut que tu expliques en faisant référence aux figures ce qu'on doit y voir : les moyennes se stabilisent ou pas.
+>>>>
+>>>> Mardi :
+>>>>
+>>>> C'est la visite d'Antoie Deza. Le matin continue les corrections du papier. A midi on mange tous ensemble avec lui et l'après-midi il parle.
+>>>>
+>>>> Mercredi :
+>>>>
+>>>> Tu relis le papier avec Julien (et moi je relirai le soir)
+>>>>
+>>>> Pour Jeudi-Dimanche, on refera un programme en fonction de l'avancement...
+>>>>
+>>>> Bon courage et à demain !
+>>>>
+>>>> Lionel
+>>>>
+>>>> Le 13/03/2018 15:51, Rado Rakotonarivo a écrit :
+>>>>> Re,
+>>>>>
+>>>>> La date de soumission a été repoussée au 25 Mars.
+>>>>>
+>>>>> http://gascom2018.hua.gr/index.php/submission-important-dates/
+>>>>>
+>>>>>
+>>>>> Le 12/03/2018 à 15:41, Lionel Pournin a écrit :
+>>>>>> Voici mes commentaires sur la section 3. Je n'ai pas encore fini toute la lecture...
+>>>>>>
+>>>>>> 24) Page 4, section 3, ligne 2 : "s as stationary distribution the uniform" -> "a uniform stationary distribution" (plus léger)
+>>>>>>
+>>>>>> 25) Page 4, section 3, lignes 3-4 : " the chains converges to the
+>>>>>> uniform for any starting distribution" -> "the chain converges to a uniform distribution regardless of the chosen initial state" (ici, je ne suis pas trop sûr, est-ce vraiment une distribution initiale ou bien seulement un état initial, il me semble que c'est le deuxième. D'ailleurs, je crois que cette formulation est employée autre part. Si ma remarque est justifiée, il faudra le corriger partout)
+>>>>>>
+>>>>>> 26) Page 4, section 3, ligne 6 : "thus show" -> "thus showing"
+>>>>>>
+>>>>>> 27) Page 4, section 3, ligne 7 : "$d$-dimensional $(d,k)$-polytopes" -> "$d$-dimensional lattice $(d,k)$-polytopes"
+>>>>>>
+>>>>>> 28) Page 4, section 3, premier paragraphe, dernière phrase : enlève cette phrase ("In addition, we outline ...) et écris "satisfied by our Markov chains" trois lignes plus haut ("chains" avec un s)
+>>>>>>
+>>>>>> 29) Page 4, énoncé du théorème 1 : il n'y a pas de point après "k". En fait c'est faux pour d=1. Autre chose, pourquoi ne pas mentionner la symmétrie ici ? Tu as clairement énoncé le théorème fondamental juste au dessus, donc écris plutôt : "For all $d\geq2$ and positive $k$, the Markov chain corresponding to Algorithm 1 is irreductible, aperiodic and symmetric." (Ne dit-on pas plutôt "symmetric" ?)
+>>>>>>
+>>>>>> 30) Page 4, preuve de l'irréductibilité : "the graph with vertex set $\Omega$ is connected" -> " the graph $\Gamma(d,k)$ underlying the Markov chain is connected." (il y a pleins de graphes différents dont l'ensemble des sommets est $\Omega$.) Ensuite enlève la phrase "Consider the graph of the
+>>>>>> markov chain, name it $\Gamma(d, k)$." Ensuite, pour la définition de Gamma(d,k), pas besoin de préciser la règle de transition, donc écris un truc comme "The vertex set of $\Gamma(d, k)$ is $\Oemga$ and there is an
+>>>>>> edge in this graph between any two vertices that are related to one another by a single transition."
+>>>>>>
+>>>>>> 31) Page 4, preuve de l'irréductibilité : dans la dernière phase, il faut préciser pourquoi on a mis cette preuve en appendice, donc par exemple, au lieu de "We proved the connectivity of Γ(d, k) in Appendix B, hence the Markov chain is irreducible.", écris plutôt "The proof that $\Gamma(d,k)$ is connected is somewhat involved, and can be found in Appendix B."
+>>>>>>
+>>>>>> 32) Page 5, preuve de la symmétrie : ", only two cases may occur." -> ". Only two cases may occur."
+>>>>>>
+>>>>>> 33) Page 5, preuve de la symmétrie : "For a $x\in[0, k]^d$ either $Q=P-\{x\}$, or $Q=P\cup\{x\}$" -> "For a lattice point $x\in[0, k]^d$, either $Q=\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ or $Q=\mathrm{conv}(\mathcal{V}\cup\{x\})$"
+>>>>>>
+>>>>>> 34) Page 5, preuve de la symmétrie : je pense qu'on peut clarifier un peu les trois dernières phrases. Par exemple : "Consider the former case. In this case, $x$ is a vertex of $P$ that is removed from it when the transition goes from $P$ to $Q$. The inverse transition inserts $x$ as a new vertex of $Q$. In both case, the probability to pick $x$ uniformly among the lattice points in $[0,k]^d$ is equal to $\frac{1}{(k+1)^d}$. The other case can be treated with the same argument."
+>>>>>>
+>>>>>> 35) Page 5, preuve de l'apériodicité : "The period of a state $P$ is defined as the gcd(T(P))" -> "By definition, the period of a state $P$ is gcd(T(P))"
+>>>>>>
+>>>>>> 36) Page 5, preuve de l'apériodicité : on peut simplifier la partie "Let P be the corner simplex of $[0,k]^d$, whose vertices are the origin ... we have a loop on $P$ with probability".
+>>>>>>
+>>>>>> Par exemple :
+>>>>>>
+>>>>>> "The polytope resulting from a transition in our Markov chain must remain $d$-dimensional. In particular, if one picks any vertex of a $d$-dimensional simplex $P$, this vertex cannot be removed, and we get a loop in our Markov chain. Since there exist $d$-dimensional lattice $(d,k)$-simplices for all $d\geq2$ and positive $k$, this shows that some state $P\in\Omega$ satisfies"
+>>>>>>
+>>>>>> 37) Page 5, preuve de l'apériodicité : "In another words" -> "In other words"
+>>>>>>
+>>>>>> 38) Page 5, phrase au dessus du théorème 2 : "We now prove a similar result for our modified Markov chain."
+>>>>>>
+>>>>>> 39) Page 5, énoncé du théorème 2 : comme pour le théorème 1, il n'y a pas de point après "k". Je propose : "For all $d\geq2$ and positive $k$, the Markov chain corresponding to Algorithm 2 is irreductible, aperiodic and symmetric."
+>>>>>>
+>>>>>> 40) Page 5, preuve de l'irréductibilité : "move it directly to the vertex" -> "move it directly to a vertex"
+>>>>>>
+>>>>>> 41) Page 5, preuve de l'irréductibilité : "a d-simplex is a set of d+ 1 affinely
+>>>>>> independant" -> "a $d$-dimensional simplex is a set of $d+1$ affinely independant points"
+>>>>>>
+>>>>>> 42) Page 5, preuve de l'irréductibilité : "Then, under the assumption that all $P\in\Omega$ comes down to a simplex by a consecutive deletions of its vertices, until it remains d+1." -> "One can transform any $P\in\Omega$ into a simplex by consecutive deletions of its vertices, until there only remains $d+1$ of them."
+>>>>>>
+>>>>>> 43) Page 6, première ligne : "they only differs by a single vertex" -> "they only differ by a single vertex"
+>>>>>>
+>>>>>> 44) Page 6, première ligne : "let be $S$ and $S'$" -> "let $S$ and $S'$ be"
+>>>>>>
+>>>>>> 45) Page 6, deuxième ligne : "If they they only differs" -> "If they they only differ"
+>>>>>>
+>>>>>> 46) Page 6, preuve de l'apériodicité : "Yet the chain is irreducible" -> "Since the chain is irreducible" (les liens de cause à effet doivent être toujours écrits de manière irréprochable"
+>>>>>>
+>>>>>> 47) Page 6, à la fin de la preuve : le carré noir doit être à la fin de la dernière ligne de texte (sur la même ligne)
+>>>>>>
+>>>>>> 48) Page 6, paragraphe au dessus du théorème 3 : on peut clarifier ça en faisant des phrases plus courtes (et aussi "is randomly chosen at the uniform distribution" ne se dit pas, on dirait plutôt par exemple "uniformly sampled from" ou "uniformly picked from"). Et de nouveau, on ne dit pas "$(d,k)$-
+>>>>>> polytope" mais "lattice $(d,k)$-polytope". Je propose :
+>>>>>>
+>>>>>> "It is an immediate consequence of Theorem 1 and Theorem 2 that the
+>>>>>> Markov chain has a uniform stationary distribution. Thus, the lattice $(d, k)-
+>>>>>> polytope we obtain from the sampler is uniformly sampled from Ω."
+>>>>>>
+>>>>>> Ensuite tu peux directement écrire le théorème.
+>>>>>>
+>>>>>> 49) Page 6, énoncé du théorème 3 : "The random sampler described by Algorithm 1 and Algorithm 2" -> "The random samplers described in Algorithm 1 and in Algorithm 2" et "of" -> "for"
+>>>>>>
+>>>>>> Le 10/03/2018 08:41, Rado Rakotonarivo a écrit :
+>>>>>>> Bonjour,
+>>>>>>>
+>>>>>>> Je viens de me rendre compte que je n'ai pas envoyé le draft. Donc le voici.
+>>>>>>>
+>>>>>>> Bon week end.
+>>>>>>>
+>>>>>>> Rado.
+>>>>>>>
+>>>>>>>
+>>>>>>> Le 10/03/2018 à 01:06, Rado Rakotonarivo a écrit :
+>>>>>>>> Re,
+>>>>>>>>
+>>>>>>>> Je vous envoie le draft du vendredi soir.
+>>>>>>>>
+>>>>>>>> *Les résultats pour le couplage ne sont pas encore les vrais, ils sont ceux de la dernière fois, il manque également le graphe pour le volume 100K steps.
+>>>>>>>>
+>>>>>>>> *J'ai changé l'orientation du tableau comparant le diamètre avec les primitives zonotopes, j'ai moins de valeurs mais il y aura encore de la place après les prochaines modifs.
+>>>>>>>>
+>>>>>>>> Rado.
+>>>>>>>>

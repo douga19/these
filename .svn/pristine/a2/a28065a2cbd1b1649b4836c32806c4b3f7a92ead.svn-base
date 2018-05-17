@@ -1,0 +1,21 @@
+@Article{naddef1989hirsch,
+  	title={The Hirsch conjecture is true for (0, 1)-polytopes},
+  	author={Naddef, Denis},
+  	journal={Mathematical Programming},
+  	volume={45},
+  	number={1},
+  	pages={109--110},
+  	year={1989},
+  	publisher={Springer}
+}
+
+@Article{del2016diameter,
+  	title={On the diameter of lattice polytopes},
+  	author={Del Pia, Alberto and Michini, Carla},
+  	journal={Discrete \& Computational Geometry},
+  	volume={55},
+  	number={3},
+  	pages={681--687},
+  	year={2016},
+  	publisher={Springer}
+}

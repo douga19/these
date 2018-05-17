@@ -1,0 +1,38 @@
+#include <iostream>
+#include "../header/convexHull.hpp"
+
+using namespace std;
+
+int main(int argc, char const *argv[]) {
+  int d = 2, k = 2;
+
+  //int x = atoi(argv[1]);
+  Point p;
+  vector<Point> listPoints;
+  vector<Point> convexHull;
+
+  cout << " 3 <= x < 1000 et 2 <= k < 100" << endl;
+  cout << "-----------------" << endl;
+
+  for (size_t x = 3; x < 1000; x++) {
+    cout << "x: " << x << endl;
+    cout << "-----------------" << endl;
+    for (size_t k = 2; k < 100; k++) {
+      int rejet = 0;
+      //init
+      listPoints = randomVectorPoint(x,k);
+      convexHull = computeConvexHull(listPoints, x);
+
+      //sample
+      while(x - convexHull.size() != 0 && rejet < 10000){
+        listPoints = randomVectorPoint(x,k);
+        convexHull = computeConvexHull(listPoints, x);
+        rejet++;
+      }
+
+       cout << rejet << "\t";
+    }
+    cout << endl;
+  }
+  return 0;
+}

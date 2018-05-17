@@ -1,0 +1,21 @@
+\RestyleAlgo{ruled}
+\SetKwInput{KwEntree}{Entrée}
+\SetKwInput{KwSortie}{Sortie}
+
+\begin{algorithm}[H]
+\LinesNumbered
+\DontPrintSemicolon
+\caption{Génération aléatoire d'un polygone convexe}
+\KwEntree{$n$: nombre de points, $k$: côté du carré}
+\KwSortie{Liste des sommets du polygone}
+\BlankLine
+
+$ListeSommets \gets$  NULL\;
+$ListePoints \gets$ NULL \;
+\For{$i \gets 0$ \KwTo $n-1$}{
+    genererAleatoirement($Point_i$) \;
+    $ListePoints$.add($Point_i$) \;
+}
+$ListeSommets \gets grahamScan(ListePoints)$ \;
+\Return{$ListeSommets$}
+\end{algorithm}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include "../header/Matrix.hpp"
+#include "../header/MarkovChain.hpp"
+
+#include <random>
+#include <chrono>
+
+using namespace std;
+
+int main(int argc, char const *argv[]) {
+  cout << "Ce programme est un simulateur Chaine de Markov" << endl;
+
+  int mixingTime = 0;
+  double epsilon = 0.1;
+
+  MarkovChain* Xt = new MarkovChain("data/5cycle.dat", "data/5cycleInitDist.dat", epsilon);
+  Xt->computeStationnaryDist();
+  Xt->toString();
+
+
+
+
+
+  // Matrix* P = new Matrix("results/test.dat");
+  // P->display();
+  return 0;
+}

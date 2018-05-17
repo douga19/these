@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+% \documentclass[twocolumn]{article}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[ruled,vlined,french]{algorithm2e}
+
+% New commands
+\renewcommand\qedsymbol{$\blacksquare$}
+% \renewcommand\diffsim{$x \bigtriangleup y$}
+
+% New Environment
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\title{Différence symétrique et distance dans ($X_t$)}
+\author{Julien David, Lionel Pournin, Rakotonarivo Rado}
+\maketitle
+
+\section{Définition}
+
+Soient deux polytopes $x = \{u_1, \dots , u_l\}$ et $y = \{v_1, \dots , v_k\} \in \Omega$. On définit par $x \bigtriangleup y$ la \textbf{différence symétrique} entre $x$ et $y$ telle que
+\begin{equation}
+  x \bigtriangleup y = \{ u \in x : u \notin y \ \mbox{et} \ v \in y : v \notin x \}
+\end{equation}
+
+On peut voir la différence symétrique de manière ensembliste comme étant $x \bigtriangleup y = x \cup y \setminus x \cap y$ cependant quelques précisions sont à mentionner:
+
+\begin{itemize}
+  \item $x \cup y$ ne constitue pas forcément une enveloppe convexe.
+  \item $|x \cup y| = |x| + |y|$ si $x \cap y = \emptyset$.
+  \item $x \bigtriangleup y$ est maximal quand $x$ et $y$ n'ont aucun sommet en commun.
+\end{itemize}
+
+\begin{proposition}
+  La distance entre $x$ et $y$ dans le graphe de $X_t$ est bornée par le cardinal de $x \bigtriangleup y$, on notera cette distance $\delta(x,y)$ et on a:
+  \begin{equation}
+    \delta(x,y) \geq{|x \bigtriangleup y|}
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Considérons $x$ et $y \in \Omega$. Comme $x \bigtriangleup y$ constitue l'ensemble des sommets sur lesquels $x$ diffère de $y$ et réciproquement, passer de $x$ en $y$ avec un nombre minimal d'étapes consiste à choisir un chemin qui fera en sorte de réduire $x \bigtriangleup y$ d'un sommet à chaque étape. Par conséquent, il faut au moins $|x \bigtriangleup y|$ étapes pour passer de $x$ en $y$.
+\end{proof}
+
+% Pour tout suite d'étapes intermédiaires $(z_i)$ avec $1\leq{i}\leq{\delta(x,y)}$ et $z_i \in \Omega$ on a:
+%
+% \begin{equation}
+%   |x \bigtriangleup y| \geq{|z_i \bigtriangleup y|}
+% \end{equation}
+
+Mettre en place la notion de différence symétrique entre deux états $x$ et $y$ va permettre d'assurer l'irréductibilité de notre chaîne $(X_t)$. En effet passer de $x$ en $y$ consiste en à trouver un nombre fini d'opérations d'ajouts et de suppressions de sommets. L'idéal serait de directement ajouter des sommets de $y$ et de supprimer ceux de $x$. Toutefois on peut tomber dans des cas où on ne peut ni supprimer des sommets de $x$ (le cas où $x$ est un simplexe) ni ajouter des sommets de $y$. On met alors en emphase plusieurs cas à distinguer:
+
+\begin{enumerate}
+  \item $x$ est n'est pas un simplexe.
+  \begin{enumerate}
+    \item $x \subset y$: On ajoute un élément de $y \setminus x$
+    \item $x \not\subset y$: On supprime un élément de $x \setminus y$
+  \end{enumerate}
+  \item $x$ est un simplexe.
+  \begin{enumerate}
+    \item Si on peut ajouter un élément de $y \setminus x$ alors on le fait
+    \item Sinon:
+    \begin{enumerate}
+      \item Ajouter un point extérieur à $x \bigtriangleup y$
+      \item Supprimer un élémént de $x \setminus y$
+      \item Ajouter un élément de $y \setminus x$
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\begin{proposition}
+  On pose la conjecture suivante: $\exists z \in \Omega$, tel que $x \bigtriangleup y \supset z \bigtriangleup y$, pour lequel on a $\delta(x,z) \leq{3}$
+\end{proposition}
+
+Cette conjecture nous dit qu'on peut trouver un état transitoire $z$ entre $x$ et $y$ tel qu'en au plus de 3 étapes on peut réduire $x \bigtriangleup y$ d'un sommet.
+
+
+\end{document}

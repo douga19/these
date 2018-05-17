@@ -1,10 +1,9 @@
 set terminal epslatex size 4,4 color colortext
-set output '../../../MarkovChainTex/eng/results/volume1000.tex'
-set title '1000 steps run'
-#set style fill solid 1.0
+set output '../../results/paper/volume/volume_10000.tex';
+set title '10000 steps run'
 set xrange [3:100];
-set yrange [0:1600]
+set yrange [0:4500]
 set xlabel '$k$';
 set ylabel 'volume';
-set ytics 0,200,1800
-plot '../../results/paper/volume/volume1000run.res' w boxes notitle;
+set ytics 0,500,4500
+plot '../../results/paper/volume/volume10000run.res' w boxes notitle;

@@ -1,0 +1,14 @@
+Matrice de transition P:
+--
+0.05	0.95
+0.7	0.3
+--
+Distribution initiale mu_0:
+--
+1	0
+--
+Distribution Uniforme pi:
+--
+0.424827	0.575173
+--
+Mixing time à 0.001 près = 15

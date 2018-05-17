@@ -1,0 +1,26 @@
+#include <iostream>
+#include "../header/Matrix.hpp"
+#include "../header/MarkovChain.hpp"
+
+#include <random>
+#include <chrono>
+
+using namespace std;
+
+int main(int argc, char const *argv[]) {
+  // cout << "Ce programme est un simulateur Chaine de Markov" << endl;
+  //
+  // int mixingTime = 0;
+  // double epsilon = 0.000001;
+  //
+  // MarkovChain* Xt = new MarkovChain(5,epsilon);
+  // Xt->computeStationnaryDist();
+  // Xt->toString();
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  default_random_engine generator (seed);
+
+  discrete_distribution<double> distribution(0.0,1.0);
+
+
+  return 0;
+}

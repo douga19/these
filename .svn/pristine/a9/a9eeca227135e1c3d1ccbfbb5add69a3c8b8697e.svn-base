@@ -1,0 +1,24 @@
+\SetKwInput{Entree}{Entrées}
+\SetKwInput{Sortie}{Sortie}
+\SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{alors}{finsi}
+\SetKwFor{Tq}{Tant que}{faire}{fintq}
+
+\begin{algorithm}[H]
+  \LinesNumbered
+  \DontPrintSemicolon
+  \Entree{la dimension $d$, le côté $k$ de l'hypercube}
+  \Sortie{$(d,k)$-polytope tiré aléatoirement dans $[0,k]^d$}
+  \BlankLine
+
+  état initial arbitraire $x_0$\;
+  \Tq{on n'a pas atteint la stationnaire}{
+  tirer aléatoirement un point $v$ dans $[0,k]^d$\;
+  \uSi{$v \in x_0$ and $|x_0| > d + 1$}{
+    $x_0$ = $x_0 - \{ v\}$\;
+   }
+  \SinonSi{$|x_0 \cup \{ v\}|$ == $|x_0| + 1$}{
+    $x_0$ = $x_0 \cup \{ v\}$\;
+  }
+ }
+ \caption{Engendrer aléatoirement un $(d,k)$-polytope}
+\end{algorithm}

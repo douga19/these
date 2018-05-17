@@ -1,0 +1,186 @@
+\documentclass[11pt]{article}
+% \documentclass[twocolumn]{article}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[ruled,vlined,french]{algorithm2e}
+
+% New commands
+\newcommand{\xt}{$(X_t)$ }
+\newcommand{\om}{$\Omega$ }
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% \renewcommand\diffsim{$x \bigtriangleup y$}
+
+% New Environment
+\newtheorem{theorem}{Théorème}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{propriete}{Propriété}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{corollaire}{Corollaire}[subsection]
+\newtheorem{definition}{Définition}[subsection]
+\newtheorem{lemme}{Lemme}[subsection]
+\newtheorem{remarque}{Remarque}[subsection]
+
+
+
+\begin{document}
+
+\title{Irréductibilité de $X_t$}
+\author{Rado Rakotonarivo}
+\maketitle
+
+\begin{definition}
+  On définit par $x \bigtriangleup y$ la \textbf{différence symétrique} entre $x$ et $y$ telle que
+  \begin{equation}
+    x \bigtriangleup y = \{ u \in x : u \notin y \ \mbox{et} \ v \in y : v \notin x \}
+  \end{equation}
+\end{definition}
+
+On peut voir la différence symétrique de manière ensembliste comme étant $x \bigtriangleup y = x \cup y \setminus x \cap y$ cependant quelques précisions sont à mentionner:
+
+\begin{itemize}
+  \item $x \cup y$ ne constitue pas forcément une enveloppe convexe.
+  \item $|x \cup y| = |x| + |y|$ si $x \cap y = \emptyset$.
+  \item $x \bigtriangleup y$ est maximal quand $x$ et $y$ n'ont aucun sommet en commun.
+\end{itemize}
+
+\begin{lemme}
+  Le cardinal de $x \bigtriangleup y$ constitue une borne inférieure de la distance entre $x$ et $y$ dans le graphe de $X_t$, on notera cette distance $\delta(x,y)$ et on a:
+  \begin{equation}
+    \delta(x,y) \geq{|x \bigtriangleup y|}
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Considérons $x$ et $y \in \Omega$. Comme $x \bigtriangleup y$ constitue l'ensemble des sommets sur lesquels $x$ diffère de $y$ et réciproquement, passer de $x$ en $y$ avec un nombre minimal d'étapes consiste à choisir un chemin qui fera en sorte de réduire $x \bigtriangleup y$ d'un sommet à chaque étape. Par conséquent, il faut au moins $|x \bigtriangleup y|$ étapes pour passer de $x$ en $y$.
+\end{proof}
+
+% Pour tout suite d'étapes intermédiaires $(z_i)$ avec $1\leq{i}\leq{\delta(x,y)}$ et $z_i \in \Omega$ on a:
+%
+% \begin{equation}
+%   |x \bigtriangleup y| \geq{|z_i \bigtriangleup y|}
+% \end{equation}
+
+\begin{remarque}\label{rmq:difsym}
+  Pour passer d'un état $x$ à un état $y$ de $\Omega$, l'idéal serait de directement ajouter des sommets de $y$ et de supprimer ceux de $x$, mais certaines configurations ne le permettent pas. Il faut alors trouver des états transitiores entre $x$ et $y$.
+\end{remarque}
+
+\begin{lemme}\label{lem:elim-mauvais-cas}
+  Pour tout simplexe $x \in \Omega$ et pour tout $y \in \Omega$, il existe un simplexe $z \in \Omega$ tel que $\delta(x,z) = 2$ et $|x \bigtriangleup y| = |z \bigtriangleup y|$.
+\end{lemme}
+
+\begin{proof}
+  Soit $X = \{v_1, \dots , v_{d+1}\}$, un simplexe de $\Omega$. Considérons pour chaque facette $\mathcal{F}_i$ de $X$, le paralellépipède $\mathcal{P}_i$ définit de la manière suivante,
+
+  \begin{equation}
+    \mathcal{P}_i = Conv(X \cup \{u_i\})
+  \end{equation}
+  où $u_i$ est le symétrique du sommet $v_i \in X \setminus \mathcal{F}_i$ par rapport à $\mathcal{F}_i$. Le point $u_i$ ici n'est pas forcément entier. Si il ne l'est pas, $\mathcal{P}_i$ n'est pas un état de la chaîne $X_t$.
+
+  Considérons ensuite l'ensemble $\mathcal{K} = [0,k]^d \cap \mathcal{P}_i$ pour tout $i$.
+
+\end{proof}
+
+\begin{proposition}\label{prop:distance}
+  Pour tout $x$ et $y \in \Omega$, $\exists z \in \Omega$, tel que $|x \bigtriangleup y| > |z \bigtriangleup y|$, pour lequel on a $\delta(x,z) \leq{3}$.
+\end{proposition}
+
+\begin{proof}
+  Considérons $X$ et $Y \in \Omega$, tel que $P(X,Y) = 0$. Passer de $X$ en $Y$ consiste en à trouver un nombre fini d'opérations d'ajouts et de suppressions de sommets; chaque opération correspond à une transition vers un état $Z$ qui doit être à priori plus proche de $Y$. On observe alors les cas suivants:
+
+  \begin{enumerate}
+    \item $X$ est n'est pas un simplexe.
+    \begin{enumerate}
+      \item $X \subset Y$: On ajoute $v \in Y \setminus X$ et $Z = X \cup \{v\}$, alors $\delta(X,Z) = 1$
+      \item $X \not\subset Y$: On supprime $v \in X \setminus Y$ et $Z = X - \{v\}$, alors $\delta(X,Z) = 1$
+    \end{enumerate}
+    \item $X$ est un simplexe.
+    \begin{enumerate}
+      \item Si on peut ajouter $v \in Y \setminus X$ alors on le fait, alors $Z = X \cup \{v\}$ et $\delta(X,Z) = 1$
+      \item Sinon:
+      \begin{enumerate}
+        \item Ajouter un point extérieur à $X \bigtriangleup Y$
+        \item Supprimer un élémént de $X \setminus Y$
+        \item Ajouter un élément de $Y \setminus X$
+
+        Dans ce cas on trouve un $Z$ tel que $\delta(X,Z) = 3$
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+
+  L'idée de la preuve consiste à montrer que si on ne trouve pas un état $Z$ à distance $1$ de $X$ alors on trouvera toujours un point extérieur à $X \bigtriangleup Y$ que l'on pourra ajouter. Dans ce cas, passer de $X$ à $Z$ nécessitera au plus $3$ étapes.
+
+  Les cas où l'on ne puisse pas ajouter un point de $Y \setminus X$ sont les cas où les éléménts de $Y \setminus X$ sont des points intérieurs à $Conv(X)$ et/ou des points sur les droites qui supportent les arêtes de $X$. Pour exemple voir le point (1) de la figure \ref{fig:transfo}. Comme on considère le cas de figure où $X$ est un simplexe, ces droites sont au nombre de $\frac{d(d+1)}{2}$.
+
+  Ajouter un point $u$ extérieur à $X \bigtriangleup Y$ puis supprimer un point de $X \setminus Y$ permet de lever cette contrainte sur l'ajout dans $Y \setminus X$. Montrons alors qu'il est toujours possible de trouver ce point $u$. Il suffit de prendre un point $u$ dans l'ensemble $\mathcal{K}$ du lemme \ref{lem:elim-mauvais-cas}.
+
+  %Voir le point (1) de la figure \ref{fig:transfo}. Le fait de ne pas pouvoir trouver un état transitoire qui ajoute directement un élément de $y \setminus x$ signifie que tout les éléments de ce dernier sont soit des points intérieurs à $Conv(x)$, soit des points  qui se trouvant sur une droite supportant une arête de $Conv(x)$.
+
+  %La preuve consiste à une construction du chemin entre $x$ et $z$. Le chemin entre $x$ et $z$ est donné par le dernier cas de la remarque \ref{rmq:difsym}, reste à savoir où allons-nous ajouter le point extérieur à $x \bigtriangleup y$.
+
+  %Considérons maintenant pour chaque facette $\mathcal{F}_i$ de $x$, le paralellépipède $\mathcal{P}_i$ = $conv(x \cup \{u\})$ où $u$ est le symétrique du sommet $u_i$ de $x$ n'appartenant pas à $\mathcal{F}_i$, pour tout $1 \leq{i} \leq{d+1}$. On considère également $\mathcal{K} = [0,k]^d \cap (\mathcal{P}_i)_{1\leq{i}\leq{d+1}}$, $\mathcal{K} \neq \emptyset$. On choisit alors un point entier $u \in \mathcal{K}$. On pose $z_1 = x \cup \{u\}$. Voir le point (2) de la figure \ref{fig:transfo}.
+
+  %On retire ensuite de $z_1$ le point $u_1$ n'appartenant pas à la facette $\mathcal{F}_1$ de $x$ utilisée pour la construction de $z_1$. On pose $z_2 = z_1 - \{u_1\}$. Voir le point (3) de la figure \ref{fig:transfo}.
+
+  %Arrivé à cette étape, on remarque que $z_2$ est un simplexe. Nous avons soulevé toutes les difficultés pour avoir une étape transitoire entre $z_2$ et $y$: retrait de $d$ droites supportant les arêtes de $Conv(x)$ et retrait de points intérieurs. Il est maintenant possible d'ajouter un élément de $y \setminus z_2$. On pose alors: $z_3 = z_2 \cup \{v\}$ où $v \in y \setminus z_2$.
+
+  %La transition $z_3 = z_2 \cup \{v\}$ où $v \in y \setminus z_2$ implique que $z_3$ a comme élément un sommet de $y$ de ce fait $|z_3 \bigtriangleup y|<|x \bigtriangleup y|$. En utilisant cette construction on atteint $z_3$ depuis $x$ en au plus 3 étapes i.e. $\delta(x,z_3)\leq{3}$. On prend alors $z = z_3$
+
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{assets/transfo}
+      \caption{Ici pour $x$ et $y \in [0,4]^2$, avec $|x \bigtriangleup y| = 6$. On trouve un $z_3 \in \Omega$, tel que $|x \bigtriangleup y| > |z_3 \bigtriangleup y| = 5$, pour lequel on a $\delta(x,z_3) = 3$.}
+      \label{fig:transfo}
+    \end{center}
+  \end{figure}
+\end{proof}
+
+\begin{corollaire}
+  On trouve une borne supérieure de la distance entre deux états $x$ et $y$ de $\Omega$. Elle est donnée par la relation suivante:
+  \begin{equation}
+    \delta(x,y) \leq{|x| + |y| + 4(d+1)}
+  \end{equation}
+\end{corollaire}
+
+% \begin{proposition}\label{prop:prop2}
+%   Tout $(d,k)$-polytope peut se réduire à un simplexe de $[0,k]^d$, et de même à partir d'un simplexe de $[0,k]^d$, on peut atteindre $(d,k)$-polytope.
+% \end{proposition}
+%
+% \begin{proof}
+%   Deux choses sont à prouver:
+%   \begin{enumerate}[i]
+%     \item À partir d'un polytope, on peut se réduire à un simplexe.
+%
+%     Soit $x,y \in \Omega$, avec $|x| = l$ et $|y| = d+1$. On suppose que $y$ n'est pas encore défini mais on sait seulement que sa taille est de $d+1$, on suppose également que $l$ est suffisament grand par rapport à $d+1$. On remarque que $y$ est un simplexe de dimension $d$. Prouver que le polytope $x$ peut se réduire à un simplexe signifie qu'on peut trouver un $r>0$ et un $y$ tel que:
+%     \begin{equation}
+%       P^r(x,y)>0
+%     \end{equation}
+%     Considérons maintenant une marche dans $X_t$ tel que $X_0 = x$. Cette marche consiste à choisir à chaque étape la transition qui enlève à $x$ exactement son $i$-ème sommet et s'arrêter quand l'état de la marche est un état de taille $d+1$.
+%
+%     Soit $z_i \in \Omega$, $z_i$ va correspondre à l'état dans lequel se trouvera la marche après avoir enlevé le $i$-ème sommet de $x$. On a alors la séquence d'états suivante:
+%
+%     \begin{equation}\label{eq:eq11}
+%       \left\{
+%       \begin{array}{rl}
+%         z_i &= z_{i-1} - \{v_i\} \  \forall i\geq{1}\\
+%         z_0 &= x
+%       \end{array}
+%       \right.
+%     \end{equation}
+%
+%     En déroulant la récurrence en (\ref{eq:eq11}), on a $z_i = x - \{v_1\} - \dots - \{v_i\}$. On remarque que $z_1 = x -\{v_1\}$ si $|x|>d+1$, d'après nos règles de transition cela implique $P(x,z_1)>0$. En répétant à chaque fois cette opération, en procédant de manière itérative sur les $z_i$, on a $P^i(x,z_i)>0$ si $|z_{i-1}|>d+1$. À l'étape $k = l-d-1$ marche atteint $z_k$, avec $|z_k|=d+1$. On choisit alors $r=k=l-d-1$ et $y=z_k$
+%
+%     \item À partir d'un simplexe, on peut atteindre un polytope.
+%
+%     On utilise alors un raisonemment analogue en considérant la marche inverse. De plus les règles de transition nous assure que si $P(x,z_1)>0$ alors $P(z_1,x)>0$.
+%
+%   \end{enumerate}
+% \end{proof}
+
+\end{document}

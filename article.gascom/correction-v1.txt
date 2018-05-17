@@ -1,0 +1,145 @@
+Salut Rado,
+
+Merci pour ce papier ! J'ai mis beaucoup plus de temps que je ne pensais pour la lecture. Je n'ai encore lu que les deux premières sections mais j'ai déjà pas mal de remarques importante à intégrer (par exemple sur les deux algorithmes). Je vais faire le reste demain. Voici déjà ce que j'ai :
+
+1) Abstract, avant-dernère ligne : “when the dimension $d=2$” -> “when $d=2$”
+
+2) Page 1, section introduction, ligne 4 : “special interest in that of” -> “special interest is that of”
+
+3) Page 1, section introduction, ligne 6 : “Number of researchs have already focused” -> “A number of articles focus” (“nombre de” se traduit en anglais par “a number of”; et on peut considérer que ces articles existent au présent, l’objectif d’un article est d’être lu ;))
+
+4) Page 1, section introduction, ligne 8  “Particularly the maximal possible” -> “Among these properties one finds, for instance, the maximal possible” (sinon la phrase n’a pas de verbe—ici “finds”)
+
+5) Page 1, section introduction, paragraphe 2, ligne 3 : “but also enables to disprove or confirm conjectures on the sampled objects” -> “but also enables to test conjectures on the sampled objects” (pour être moins fort sur cette phrase là; en principe ce qui permet d’infirmer une conjecture c’est plutôt l’énumération complète).
+
+6) Page 1, section introduction, paragraphe 2, ligne 4 : “It has also as purpose to study” -> “Another purpose is the study of” (pour alléger) et “effectivness” -> “effectiveness” et “who takes” -> “taking” (who se rapporte à quelqu’un)
+
+7) Page 1, section introduction, paragraphe 2, ligne 7 : “Except their algorithm generates a random polygon in a disc thus a different distribution from the uniform over the lattice (d, k)-polytopes” -> “Note however that their setup is different to ours as they deal with polygons contained in a disc, whose vertices are not restricted to a lattice”
+
+8) Page 1, section introduction, paragraphe 2, ligne 10 : “we built” -> “we propose” (au présent)
+
+9) Page 1, section introduction, paragraphe 2, à la fin du paragraphe : il faut préciser “holds”. Par exemple “and holds for any values of d and k” -> “and its stationary distribution is uniform for any $d\geq2$ and positive k” (pour d=1, il ne marche pas, mais c’est pas important ;))
+
+10) Page 2, ligne 5 : On dit “At a first glance” (avec un “a”). Autre chose, n’utilise jamais “trivial” comme un jugement quand tu écris (ça peut être mal compris et il faut éviter les jugements trop catégoriques quand on écrit--"trivial" n'est pas un jugement lorsqu'il s'applique à un cas que le folklore appelle trivial comme par exemple lorsque l'ensemble qu'on regarde est vide mais ça dépend vraiment des sujets, donc en général soit très prudent avec ce genre de vocabulaire). Je propose de fusionner cette phrase avec la suivante : “These operations are elementary, yet they raise very interesting geometrical questions as, for instance, whether they always allow to transform any $d$-dimensional lattice $(d,k)$-polytope into any other.” Du coup, il faut écrire dans la phrase suivante “our Markov chain” au lieu de “this Markov chain”
+
+11) Page 2, juste au dessus de la section 2: “by giving number of experiments” -> “by giving experimental results” (ce ne sont pas des expériences qu’on donne mais des résultats ;))
+
+12) Page 2, titre de la section 2 : “The Markov chain and the resulting random sampler“ -> “The Markov chain and the random sampler“ (les titres des sections doivent être courts autant que possible)
+
+13) Page 3, première ligne : on dit “Taking INto account”, mais ça n'a pas le sens de "considérons". Je propose d’écrire : “By the above procedure, sampling a random lattice $(d,k)$-polytope consists in generating a random walk on the Markov chain until the stationary distribution is reached.” J'ai une question pour toi (ou Julien) : est-ce que la distribution est vraiment atteinte ? J'ai l'impression que c'est plutôt une propriété asymptotique (ou est-ce que je me trompe ?) Ne devrait-on pas écrire plutôt "until we are close enough to the stationary distribution" ? Cette remarque s'applique aussi aux boucles "while" dans les algorithmes 1 et 2 qui s'arrêtent quand on a atteint la distribution stationnaire. Pour être plus juste ne devrait-on pas dire qu'on arrête ces "while" quand on est suffisamment près de la distribution stationnaire ? C'est plus vague, mais plus juste, non ?
+
+** Il faut qu'on aille jusqu'à l'uniforme
+
+14) Page 3, juste au dessus le l’algorithme : “by the Algorithm 1” -> “by Algorithm 1”
+
+15) Page 3, titre de l’algorithme 1 : “Sample at random a (d, k)-polytope” ->  “Random sampling of a lattice (d, k)-polytope” (n’oublie pas le “lattice” dans “lattice $(d,k)$-polytope”). Dans Input, “the side k of the hypercube” -> “the size k of the hypercube” (en anglais, “side” ne parle pas de la longueur du côté mais du côté lui-même). Dans Output, “random (d, k)-polytope drawn in $[0,k]^d$” -> “a random lattice $(d,k)$-polytope” (par définition un random lattice $(d,k)$-polytope est dans le cube).
+
+16) Page 3, étape 1 de l’algorithme : “choose at random a $(d,k)$-simplex $P$ with $\mathcal{V}$ as vertex set” -> “generate a random lattice $(d,k)$-simplex $P$ with vertex set $\mathcal{V}$” (n’oublie pas le “lattice”)
+
+17) Page 3, étape 3 de l’algorithme : “choose at random a lattice point $x$ in $[0,k]^d$” -> “generate a random lattice point $x$ in $[0,k]^d$”
+
+18) Page 3, étapes 4-7 : cet algorithme ne fait pas ce que tu décris en page 2. La première raison est que, dans l’étape 4, la condition n’est pas sur le nombre de sommets de V mais sur la dimension de l’enveloppe convexe de V\{x}. Autrement dit, ce qu’on veut c’est ne pas enlever le point x quand P est une pyramide de sommet x sur un polytope de dimension d-1 (je sais que c’est la même chose en dimension 2 mais on présente le générateur dans le cas général !) Il faudrait écrire, par exemple
+
+if $x\in\mathcal{V}$ then
+| if $\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ is $d$-dimensional then
+| | $P\leftarrow\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ (je mets des “leftarrow” à la place des “=” pour montrer l’affectation; et aussi : ne mets pas de “;” à la fin des lignes : comme tu écris un algorithme, tu peux t’éviter la syntaxe des langages de programmation)
+
+Ensuite dans l’étape 6, il faut dire les choses autrement parce que l’enveloppe convexe n’est pas égale à l’enselble de ses sommets. Par exemple :
+
+else (et pas else if; c’est le else du premier if ci-dessus)
+| compute the convex hull $Q$ of $\mathcal{V}\cup\{x\}$ (remarque qu’on ne met pas de majuscule à “conv”)
+| if the vertex set of $Q$ is $\mathcal{V}\cup\{x\}$ then
+| | $P\leftarrow\mathrm{conv}(\mathcal{V}\cup\{x\})$
+
+19) Page 3, remark 1 : tu peux être plus précis et concis dans cette remarque. En fait, puisque tu donnes de toutes façons l’algorithme ensuite, il ne s’agit plus seulement d’une remarque. Je propose d’enlever cette remarque et de continuer avec le paragraphe qui suit dans lequel tu expliques les choses.
+
+20) Du coup, le paragraphe qui suit l’algorithme 1 devrait ressembler à :
+
+“As we shall see, the proof of the irreducibility of our Markov chain is somewhat involved. It is possible to modify the transition rule in order to improve the connectivity of our Markov chain’s graph and make its irreducibility easier to prove: when $P$ is a simplex, and when the chosen random lattice point $x$ is a vertex of $P$, we may move that vertex to another lattice point instead of having a loop on $P$ in our Markov chain. More precisely, in this case we generate a new random lattice point $y$ in $[0,k]^d$ and compute the convex hull $Q$ of $[\mathcal{V}\mathord{\setminus}\{x\}]\cup\{y\}$. If $Q$ is $d$-dimensional, the transition goes from $P$ to $Q$, otherwise we loop on $P$. With this modified transition rule, we obtain Algorithm 2.”
+
+21) Page 4, titre de l’algorithme 2 : “Sample at random a (d, k)-polytope” ->  “Random sampling of a lattice (d, k)-polytope, modified”. Les même remarques que pour l’algorithme 1 sont encore vraies (pour Input, Output et les différentes étapes de l’algorithme). En particulier, on aurait, à la place des étapes 4-10 :
+
+if $x\in\mathcal{V}$ then
+| if $|\mathcal{V}|=d+1$ then
+| | generate a random lattice point $y$ in $[0,k]^d$
+| | if $\mathrm{conv}([\mathcal{V}\mathord{\setminus}\{x\}]\cup\{y\})$ is $d$-dimensional then
+| | |
+
+\leftarrow\mathrm{conv}([\mathcal{V}\mathord{\setminus}\{x\}]\cup\{y\})$
+| else if $\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ is $d$-dimensional then
+| | $P\leftarrow\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$
+
+et il faut aussi modifier les étapes 11-12 comme indiqué dans la remarque 18)
+
+22) Dans les deux algorithmes, "stationnary distribution" -> "stationary distribution"
+
+23) Page 4, paragraphe qui suit l’algorithme 2 : “For both of the samplers, the uniformity is conditionned by the properties of our Markov chain.” -> “The uniformity of both samplers is conditioned to the properties of the underlying Markov chains.” Ensuite il n’y a qu’à écrire “These properties are studied in the next section.” (quand on invoque des raisons de “clarté”, ça veut dire qu’on a un truc particulièrement dur à expliquer mais là c’est simplement une question de structure du papier)
+
+24) Page 4, section 3, ligne 2 : "s as stationary distribution the uniform" -> "a uniform stationary distribution" (plus léger)
+
+25) Page 4, section 3, lignes 3-4 : " the chains converges to the
+uniform for any starting distribution" -> "the chain converges to a uniform distribution regardless of the chosen initial state" (ici, je ne suis pas trop sûr, est-ce vraiment une distribution initiale ou bien seulement un état initial, il me semble que c'est le deuxième. D'ailleurs, je crois que cette formulation est employée autre part. Si ma remarque est justifiée, il faudra le corriger partout)
+
+**La distribution initiale peut permet de choisir un état initial, si par exemple $\Omega = \{P_0, P_1, ...\}$, choisir $P_0$ comme état initial nous informe que la distribution initiale sera $(1,0,0,....,0)$
+
+26) Page 4, section 3, ligne 6 : "thus show" -> "thus showing"
+
+27) Page 4, section 3, ligne 7 : "$d$-dimensional $(d,k)$-polytopes" -> "$d$-dimensional lattice $(d,k)$-polytopes"
+
+28) Page 4, section 3, premier paragraphe, dernière phrase : enlève cette phrase ("In addition, we outline ...) et écris "satisfied by our Markov chains" trois lignes plus haut ("chains" avec un s)
+
+29) Page 4, énoncé du théorème 1 : il n'y a pas de point après "k". En fait c'est faux pour d=1. Autre chose, pourquoi ne pas mentionner la symmétrie ici ? Tu as clairement énoncé le théorème fondamental juste au dessus, donc écris plutôt : "For all $d\geq2$ and positive $k$, the Markov chain corresponding to Algorithm 1 is irreductible, aperiodic and symmetric." (Ne dit-on pas plutôt "symmetric" ?)
+
+30) Page 4, preuve de l'irréductibilité : "the graph with vertex set $\Omega$ is connected" -> " the graph $\Gamma(d,k)$ underlying the Markov chain is connected." (il y a pleins de graphes différents dont l'ensemble des sommets est $\Omega$.) Ensuite enlève la phrase "Consider the graph of the
+markov chain, name it $\Gamma(d, k)$." Ensuite, pour la définition de Gamma(d,k), pas besoin de préciser la règle de transition, donc écris un truc comme "The vertex set of $\Gamma(d, k)$ is $\Oemga$ and there is an
+edge in this graph between any two vertices that are related to one another by a single transition."
+
+31) Page 4, preuve de l'irréductibilité : dans la dernière phase, il faut préciser pourquoi on a mis cette preuve en appendice, donc par exemple, au lieu de "We proved the connectivity of Γ(d, k) in Appendix B, hence the Markov chain is irreducible.", écris plutôt "The proof that $\Gamma(d,k)$ is connected is somewhat involved, and can be found in Appendix B."
+
+32) Page 5, preuve de la symmétrie : ", only two cases may occur." -> ". Only two cases may occur."
+
+33) Page 5, preuve de la symmétrie : "For a $x\in[0, k]^d$ either $Q=P-\{x\}$, or $Q=P\cup\{x\}$" -> "For a lattice point $x\in[0, k]^d$, either $Q=\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ or $Q=\mathrm{conv}(\mathcal{V}\cup\{x\})$"
+
+34) Page 5, preuve de la symmétrie : je pense qu'on peut clarifier un peu les trois dernières phrases. Par exemple : "Consider the former case. In this case, $x$ is a vertex of $P$ that is removed from it when the transition goes from $P$ to $Q$. The inverse transition inserts $x$ as a new vertex of $Q$. In both case, the probability to pick $x$ uniformly among the lattice points in $[0,k]^d$ is equal to $\frac{1}{(k+1)^d}$. The other case can be treated with the same argument."
+
+35) Page 5, preuve de l'apériodicité : "The period of a state $P$ is defined as the gcd(T(P))" -> "By definition, the period of a state $P$ is gcd(T(P))"
+
+36) Page 5, preuve de l'apériodicité : on peut simplifier la partie "Let P be the corner simplex of $[0,k]^d$, whose vertices are the origin ... we have a loop on $P$ with probability".
+
+Par exemple :
+
+"The polytope resulting from a transition in our Markov chain must remain $d$-dimensional. In particular, if one picks any vertex of a $d$-dimensional simplex $P$, this vertex cannot be removed, and we get a loop in our Markov chain. Since there exist $d$-dimensional lattice $(d,k)$-simplices for all $d\geq2$ and positive $k$, this shows that some state $P\in\Omega$ satisfies"
+
+37) Page 5, preuve de l'apériodicité : "In another words" -> "In other words"
+
+38) Page 5, phrase au dessus du théorème 2 : "We now prove a similar result for our modified Markov chain."
+
+39) Page 5, énoncé du théorème 2 : comme pour le théorème 1, il n'y a pas de point après "k". Je propose : "For all $d\geq2$ and positive $k$, the Markov chain corresponding to Algorithm 2 is irreductible, aperiodic and symmetric."
+
+40) Page 5, preuve de l'irréductibilité : "move it directly to the vertex" -> "move it directly to a vertex"
+
+41) Page 5, preuve de l'irréductibilité : "a d-simplex is a set of d+ 1 affinely
+independant" -> "a $d$-dimensional simplex is a set of $d+1$ affinely independant points"
+
+42) Page 5, preuve de l'irréductibilité : "Then, under the assumption that all $P\in\Omega$ comes down to a simplex by a consecutive deletions of its vertices, until it remains d+1." -> "One can transform any $P\in\Omega$ into a simplex by consecutive deletions of its vertices, until there only remains $d+1$ of them."
+
+43) Page 6, première ligne : "they only differs by a single vertex" -> "they only differ by a single vertex"
+
+44) Page 6, première ligne : "let be $S$ and $S'$" -> "let $S$ and $S'$ be"
+
+45) Page 6, deuxième ligne : "If they they only differs" -> "If they they only differ"
+
+46) Page 6, preuve de l'apériodicité : "Yet the chain is irreducible" -> "Since the chain is irreducible" (les liens de cause à effet doivent être toujours écrits de manière irréprochable"
+
+47) Page 6, à la fin de la preuve : le carré noir doit être à la fin de la dernière ligne de texte (sur la même ligne)
+
+48) Page 6, paragraphe au dessus du théorème 3 : on peut clarifier ça en faisant des phrases plus courtes (et aussi "is randomly chosen at the uniform distribution" ne se dit pas, on dirait plutôt par exemple "uniformly sampled from" ou "uniformly picked from"). Et de nouveau, on ne dit pas "$(d,k)$-
+polytope" mais "lattice $(d,k)$-polytope". Je propose :
+
+"It is an immediate consequence of Theorem 1 and Theorem 2 that the
+Markov chain has a uniform stationary distribution. Thus, the lattice $(d, k)-
+polytope we obtain from the sampler is uniformly sampled from Ω."
+
+Ensuite tu peux directement écrire le théorème.
+
+49) Page 6, énoncé du théorème 3 : "The random sampler described by Algorithm 1 and Algorithm 2" -> "The random samplers described in Algorithm 1 and in Algorithm 2" et "of" -> "for"

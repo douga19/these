@@ -8,6 +8,8 @@
 #include "../header/convexHull.hpp"
 #include "../header/State.hpp"
 
+#define PI 3.141592653589793238462643383
+
 using namespace std;
 
 int largestSize(int k, int run, State* initialState);
@@ -18,7 +20,8 @@ void outputScript(int k, int run, State* s);
 
 int main(int argc, char const *argv[]) {
   int d = 2;
-  int run = stoi(argv[1]);
+  // int run = stoi(argv[1]);
+  int run = 1000000;
 
   //int k = atoi(argv[1]);
 
@@ -26,9 +29,9 @@ int main(int argc, char const *argv[]) {
   std::vector<Point> s = {{0,0},{0,1},{1,0}};
   State* initState = new State(3,s);
 
-  // Plus grand nombre de points d'un état qu'on peut atteindre pour une marche de 100000 pas
-  // for (size_t k = 10; k < 100; k++) {
-  //   cout << k << " " << largestSize(k,10000,initState) << endl;
+  // Plus grand nombre de points d'un état qu'on peut atteindre pour une marche
+  // for (size_t k = 3; k < 100; k++) {
+  //   cout << k << " " << 12 * pow((k/(2*PI)),(float)2/3) << " " << largestSize(k,run,initState) << endl;
   // }
 
   // Plus grand nombre de points d'un état qu'on peut atteindre pour une marche qui realise le diametre
@@ -44,7 +47,7 @@ int main(int argc, char const *argv[]) {
 
   // Nombre moyen de sommets d'un polygone
 
-  // for (size_t k = 3; k <= 100; k++) {
+  // for (size_t k = 20; k <= 90; k=k+10) {
   //   int* t = new int[run];
   //   for (size_t i = 0; i < run; i++) {
   //     initState->updateConvexHull(randomPoint(k));
@@ -55,37 +58,37 @@ int main(int argc, char const *argv[]) {
   // }
 
   // Distribution pour le nombre de sommets
-  int k = stoi(argv[2]);
-  int* valeur = new int[k*k];
-  double* moyenne = new double[k*k];
-  for (size_t i = 0; i < k*k; i++) moyenne[i] = 0;
-
-  for (size_t j = 1; j <= 1000; j++) {
-    for (size_t i = 0; i < k*k; i++) valeur[i] = 0;
-    valeur[3] = 1;
-    for (size_t i = 0; i < run; i++) {
-      initState->updateConvexHull(randomPoint(k));
-      valeur[initState->getNVertices()]++;
-    }
-    for (size_t i = 3; i < k*k; i++) {
-      moyenne[i] = (double) ((j-1)*moyenne[i]/j) + (double) (valeur[i]/j);
-    }
-  }
-
-  free(valeur);
-
-  for (size_t i = 0; i < k*k; i++) {
-    cout << i << " " << moyenne[i] << endl;
-  }
-  free(moyenne);
+  // int k = stoi(argv[2]);
+  // int* valeur = new int[k*k];
+  // double* moyenne = new double[k*k];
+  // for (size_t i = 0; i < k*k; i++) moyenne[i] = 0;
+  //
+  // for (size_t j = 1; j <= 1000; j++) {
+  //   for (size_t i = 0; i < k*k; i++) valeur[i] = 0;
+  //   valeur[3] = 1;
+  //   for (size_t i = 0; i < run; i++) {
+  //     initState->updateConvexHull(randomPoint(k));
+  //     valeur[initState->getNVertices()]++;
+  //   }
+  //   for (size_t i = 3; i < k*k; i++) {
+  //     moyenne[i] = (double) ((j-1)*moyenne[i]/j) + (double) (valeur[i]/j);
+  //   }
+  // }
+  //
+  // free(valeur);
+  //
+  // for (size_t i = 0; i < k*k; i++) {
+  //   cout << i << " " << moyenne[i] << endl;
+  // }
+  // free(moyenne);
 
 
   // Output pour le calcul du volume sur SAGEmath
   // Ne prend en compte que le cas où on ne boucle pas
 
-  // for (size_t i = 3; i <= 100; i++) {
-  //   outputScript(i,run,initState);
-  // }
+  for (size_t i = 20; i <= 90; i=i+10) {
+    outputScript(i,run,initState);
+  }
 
   // if (argc > 2){
   //   int d = 2, k = atoi(argv[1]);
@@ -137,7 +140,6 @@ int largestSize(int k, int run, State* initialState){
     initialState->updateConvexHull(randomPoint(k));
     t[i] = initialState->getNVertices();
   }
-  //initialState->printStat();
   return max(t,run);
 }
 
@@ -158,7 +160,9 @@ float mean(int* t, int length){
 }
 
 void outputScript(int k, int run, State* s){
-  string fileName = "script/100000run/volume_" + to_string(k) + "_" + to_string(run) + ".sage";
+  // string fileName = "script/1Mrun/volume_" + to_string(k) + "_" + to_string(run) + ".sage";
+  string fileName = "script/1Mrun/volume_" + to_string(k) + ".sage";
+
   ofstream file(fileName, ios::out | ios::trunc);
 
   if(file){

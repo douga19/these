@@ -1,0 +1,123 @@
+%\documentclass[twocolumn]{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\begin{document}
+
+%titre
+\title{Idées de preuve que les (\textit{d},2)-polytopes sont Hirsch}
+\author{Rado Rakotonarivo}
+\maketitle
+
+\section{Motivations}
+L'étude du diamètre du graphe des polytopes a connu un engouement assez conséquent au cours de ces dernières décennies \cite{deza2016improved}, \cite{naddef1989hirsch} et \cite{del2016diameter}. Ce diamètre constitue une borne inférieure de la complexité de l'algorithme de simplexe, lors de la résolution d'un problème d'optimisation. Effectivement, résoudre un programme linéaire se réduit à parcourir le graphe d'un polytope dont la dimension correspond au nombre de variables et le nombre de facettes au nombre de contraintes.
+
+Toujours dans cette même optique, Hirsch émmet une conjecture  mettant en relation le diamètre $\delta$, le nombre de facettes $n$ ainsi que la dimension $d$ d'un polytope suivant l'inégalité: 
+$$
+	n-d\geq{\delta}
+$$
+Cette conjecture a été prouvée pour certains cas particuliers mais néanmoins reste à démontrer dans le cas général des polytopes. Pour les
+(\textit{d,k})-polytopes, i.e les polytopes entiers contenu dans l'hypercube $[0,k]^d$, Naddef montre de façon élémentaire que pour $k=1$ la conjecture est vraie \cite{naddef1989hirsch}. 
+
+Nous allons nous intéresser au cas où $k$ vaut 2. Dans ce rapport, l'idée est de prouver Hirsch pour le cas $k = 2$, on va se baser sur les résultats antérieurs de Naddef ainsi que de Del Pia et Michini. 
+
+Pour rappel, Del Pia et Michini arrivent à prouver que pour $k\geq{2}$, on a:  
+$$ 
+	\delta\geq{\lfloor{(k-\frac{1}{2})}d\rfloor}
+$$ 
+Et que pour $k=2$, $\delta$ est au plus $\lfloor{\frac{3}{2}}d\rfloor$. De plus, quelque soit $d$, il existe un (\textit{d,2})-polytope qui atteint cette borne.
+
+Ce ne sont que des éléments sur lesquels notre raisonnement va partir et il se peut que l'on aboutisse pas à notre objectif; par contre c'est une bonne manière pour commencer notre travail dans la manière où d'autres propriétés intéressantes sur le diamètre des (\textit{d,k})-polytopes pourraient en découler.
+
+\section{Idées de preuves}
+L'idée est de raisonner par récurrence sur la dimension. C'est d'ailleurs la méthode de démonstration utilisée dans\cite{naddef1989hirsch} et \cite{del2016diameter}. Le procédé sera comme suit:
+\begin{itemize}
+\item Supposons que $n-d\geq{\delta(P)}$ soit vraie pour  $d\leq{d^*}$.
+\item Montrons ensuite que $n-d\geq{\delta(P)}$ pour $d = d^* + 1$
+\end{itemize}
+
+La vérification des cas de base étant triviale, il nous faut distinguer deux cas: un cas où $\delta(P)\leq{d}$ et le cas où $\delta(P)>d$. Cette distinction suit respectivement les résultats de Naddef et de Del Pia Michini.
+
+\subsection{Premier cas: $\delta(P)\leq{d}$}
+Soit $P$ notre (\textit{d,2})-polytope.
+Pour $u$ et $v$ deux sommets de $P$, notons par $d_P(u,v)$ la distance au sens du graphe de $u$ et de $v$ dans $P$. Prenons maintenant $u$ et $v$ tel que $d_P(u,v) = \delta(P)$.
+
+\begin{enumerate}[i]
+\item Si $u$ et $v$ appartiennent à une même facette $F$ de $P$, on sait que: $dim(F)=d^*$ et $n(F)\leq{n(P)-1}$.
+
+Appliquons ensuite l'hypothèse de récurrence pour $F$.
+$$
+	n(F)-dim(F)\geq{d_F(u,v)}\geq{d_p(u,v)}=\delta(P)
+$$
+et comme $n(P)-1-d^*\geq{n(F)-dim(F)}$, on a:
+$$
+	\begin{array}{c}
+		n(P)-1-d^*\geq\delta(P)\\
+		n(P)-1-d+1\geq\delta(P)\\
+		n-d\geq\delta
+	\end{array}	
+$$
+
+\item Si $u$ et $v$ n'appartiennent à une même facette $F$ de $P$, on peut supposer dans ce cas que $F$ est une facette que contient $v$ mais qui ne contient pas $u$. On a toujours $dim(F)=d^*$ et $n(F)\leq{n(P)-1}$. Mais de plus, on sait que $u$ est au moins contenue dans $d^*+1$ facettes de $P$, il en est de même pour $v$; cette information nous donne une troisième équation: $n(P)\geq{2(d^*+1)}$. 
+
+L'hypothèse de récurrence sur $F$ donne:
+$$
+	n(F)\geq{\delta(F)+d^*}
+$$
+Et comme $n(P)-1\geq{n(F)}$, on obtient:
+$$
+	\begin{array}{c}
+		n(P)-1\geq\delta(F)+d^*\\
+		n(P)-(d^*+1)\geq\delta(F)\\
+	\end{array}
+$$
+Or $n(P)\geq{2(d^*+1)}$ i.e:
+$$
+	n(P)-(d^*+1)\geq{2(d^*+1)}-(d^*+1)=d^*+1=d\geq{\delta(P)}
+$$
+On conclut que $n - d \geq{\delta}$
+\end{enumerate}
+
+\subsection{Deuxième cas: $\delta(P)>d$}
+Dans cette section, on va débuter notre raisonnement sur la manière de faire dans \cite{del2016diameter}. Del Pia et Michini partent sur le principe de construire un chemin reliant deux sommets $u$ et $v$ de $P$ de telle sorte que ce chemin parcoure autant de nouvelle facettes possibles pour vérifier Hirsch. Comme nous nous intéressons au cas où $k=2$, leur résultat nous ajoute une contrainte supplémentaire sur le diamètre i.e. $\delta(P)\leq{\lfloor{\frac{3}{2}}d\rfloor}$.
+
+La principale piste pour prouver Hirsch pour $k=2$ réside dans leur manière de procéder. Considérer deux sommets $u$ et $v$ de $P$: si elles sont contenues dans une même facette $F$, on applique Naddef et on est content; sinon, trouver un chemin entre $u$ et $v$ de telle sorte que l'on découvre au fur et à mesure que l'on avance de $u$ vers $v$ un certain nombre de nouvelles facettes (mises à part les $2d$ qui nous sont donnés gratuitement du fait que $u$ et $v$ ne sont pas contenues dans une même facette $F$). 
+
+Leurs résultats offrent plusieurs propriétés utiles dans la suite de notre travail néanmoins il me reste à bien les utiliser pour essayer de prouver Hirsch pour $k=2$.
+
+Voici quelques questions qui ont été soulevés et qui me reste encore à voir:
+
+\begin{enumerate}[i]
+	\item Est-ce que $d_P(u,v)\leq{d_F(u',v)+1}$ si au moins $\exists{u'}$ à distance 1 de $u$ qui tombe dans $F$?
+	\item Pour $k=2$ quelle est la relation entre $\delta(P)$ et $\delta(F)$?
+	\item Quelle sera la manière de construire le chemin pour notre relation de récurrence pour que Hirsch soit vérifiée i.e. combien de nouvelles faces faudrait-il découvrir, $\delta(P)-d\leq{\lfloor{\frac{d}{2}}\rfloor}$?
+\end{enumerate}
+
+
+
+\clearpage
+
+\begin{thebibliography}{9}
+\bibitem{deza2016improved}
+	Antoine Deza, Lionel Pournin.
+	\emph{Improved bounds on the diameter of lattice polytopes}.
+	arXiv preprint arXiv:1610.00341.
+	2016.
+\bibitem{naddef1989hirsch}
+	Denis Naddef.
+	\emph{The Hirsch conjecture is true for (0, 1)-polytopes}.
+	Mathematical Programming, Springer.
+	1989.
+\bibitem{del2016diameter}
+	Alberto Del Pia, Carla Michini.
+	\emph{On the diameter of lattice polytopes}.
+	Discrete \& Computational Geometry, Springer.
+	2016.
+\end{thebibliography}
+
+
+
+\end{document}

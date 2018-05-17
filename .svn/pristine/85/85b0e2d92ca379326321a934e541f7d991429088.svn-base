@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+% \documentclass[twocolumn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[ruled,boxed]{algorithm2e}
+
+% New commands
+\newcommand{\xt}{$(X_t)$ }
+\newcommand{\om}{$\Omega$ }
+
+% New Environment
+\newtheorem{theorem}{Théorème}
+\newtheorem{propriete}{Propriété}[section]
+
+\begin{document}
+
+\title{Génération aléatoire de polytopes entiers en utilisant les chaînes de Markov}
+\author{Julien David, Rakotonarivo Rado}
+\maketitle
+
+
+
+Ce document va décrire une nouvelle approche pour faire de la génération aléatoire de polytope entiers en utilisant les chaînes de Markov. Les objets à engendrer sont
+toujours les mêmes: les polytopes entiers contenus dans l'hypercube ${[0,k]}^d$. L'idée principale de la génération aléatoire en utilisant les chaînes de Markov est la suivante: modéliser une chaîne de Markov dont les états seront nos $(d,k)$-polytopes, lancer des marches sur notre chaîne jusqu'à ce qu'on atteigne une distribution stationnaire, et enfin prouver que cette distribution stationnaire est unique et uniforme. De ce fait, on aura construit un générateur aléatoire uniforme de $(d,k)$-polytopes.
+
+Bien que l'idée de laquelle on part soit simple, il réside cependant plusieurs difficultés. Premièrement, notre espace des états est inconnu - où plutôt, pas entièrement définie, la matrice de transition est également inconnue. De plus, notre espace des états sera relativement grand. Et enfin, assurer une distribution uniforme nécessite que certaines conditions sur notre matrice de transition soient vérifiées.
+
+Toutefois, partir sur une chaîne de Markov semble être une piste sérieuse vu les nombreux résultats et différentes techniques qui sont déjà à notre disposition \cite{levin2009markov}. Il y a également le fait qu'on peut faire une expérimentation: modéliser notre chaîne et lancer une batterie de tests dessus.
+
+Le travail sur cette nouvelle approche sera principalement de:
+\begin{itemize}
+  \item Trouver des opérations locales sur nos $(d,k)$-polytopes pour pouvoir passer d'un état à un autre.
+  \item Utiliser les techniques et les résultats connus sur les chaînes de Markov pour estimer le temps de mélange.
+  \item Réfléchir sur des idées de preuves pour l'uniformité du générateur.
+\end{itemize}
+
+Ceci étant, ce document sera structuré de la manière suivante. Dans un premier temps, un bref rappels des principaux résultats sur les chaînes de Markov - tous essentiellement proviennent de notre lecture sur \cite{levin2009markov}. Et dans un deuxième temps notre modèle concret de générateur en utilisant les chaînes de Markov.
+
+\section{Chaînes de Markov}
+
+Comme les polytopes entiers dans ${[0,k]}^d$ sont finis, on va s'interesser aux chaînes de Markov à espace d'états fini. Dans toute la suite du document, on assumera que la chaîne de Markov étudiée est une chaîne à espace d'états fini.
+
+\subsection{Définitions}
+
+Une chaîne de Markov finie $(X_t)_{t\geq{0}}$ est un processus qui évolue en temps sur les éléments d'un espace $\Omega$ fini. Se déplacer d'un état $x \in \Omega$ à un autre état de $\Omega$ suit une distribution fixe $P(x,\cdot)$. C'est une séquence de variables aléatoires $(X_0, X_1, \cdots)$ à valeur dans $\Omega$.
+
+La valeur de \xt étant l'état de la chaîne à l'instant $t$, la \textbf{propriété de Markov} sur \xt assure que l'état à l'instant $t+1$ ne dépend que de l'état à l'instant $t$.
+
+La matrice de transition $P$ de \xt qui décrit les transitions entre les états de \om, est une matrice stochastique dont la $x-$ème ligne désigne la distribution $P(x,\cdot)$. On a:
+
+\begin{equation}
+  \sum_{y \in \Omega} P(x,y) = 1 \quad \forall{x \in \Omega}
+\end{equation}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=5cm]{assets/frog}
+    \caption{Une chaîne de Markov tel que: $\Omega = \{x,y\}$, $P(x,x) = 1-p$, $P(x,y) = p$,  $P(y,x) = q$ et $P(y,y) = 1-q$}
+    \label{fig:fig1}
+  \end{center}
+\end{figure}
+
+\subsection{Propriétés}
+
+Soient $X_t$ une chaîne de Markov, \om son espace des états et $P$ sa matrice de transition.
+
+\subsubsection{Irréductibilité}
+
+La matrice P de $X_t$ est \textbf{irréductible} si tout état $x$ de \om est accessible depuis n'importe quel état de \om. En d'autres mots, cela signifie que le graphe de $X_t$ est fortement connexe. Formellement, on a:
+
+\begin{equation}
+  \exists r_0 \quad \ : \quad \forall r > r_0 \quad P^r(x,y) > 0 \quad \forall x,y \in \Omega
+\end{equation}
+
+\subsubsection{Périodicité}
+
+On définit par $\mathcal{T}(x):=\{t\geq{1} \ : P^t(x,x)>0\}$, l'ensemble des temps où la chaîne retourne en x. La \textbf{période} de $x$ est définit par $\mathrm{pgcd}(\mathcal{T}(x))$.
+
+\begin{propriete}
+  Si $P$ est irreductible alors tous les états de \om ont la même période.
+\end{propriete}
+
+$X_t$ est dite \textbf{apériodique} si tous les états de \om ont pour période 1, sinon elle est dite \textbf{périodique}.
+
+\subsubsection{Symétrie}
+
+On dit que $X_t$ est \textbf{symétrique} si pour tout $x$ et $y$ de \om, la probabilité de passer de $x$ en $y$ et la probabilité de passer de $y$ en $x$ sont non nulles et sont les même; i.e.:
+
+\begin{equation}
+  P(x,y) = P(y,x) \quad \forall x,y \in \Omega
+\end{equation}
+
+
+\subsubsection{Hitting time et premier temps de retour}
+
+Pour tout état $x \in \Omega$ on défini le \textbf{hitting time} par:
+
+\begin{equation}
+  \tau_x:=\min \{t\geq{0} \ : X_t = x\},
+\end{equation}
+
+l'ensemble des moments où la chaîne visite $x$. De même, le \textbf{premier temps de retour} en $x$ est définit par:
+
+\begin{equation}
+  \tau_x^+:=\min \{t\geq{1} \ : X_t = x\} \quad \mathrm{si} \quad X_0 = x
+\end{equation}
+
+\subsection{Récurrence d'un état}
+
+Un état $x$ est dit \textbf{récurrent positif} si $\mathrm{E}_x(\tau_x^+)<\infty$, où $\mathrm{E}_x(\tau_x^+)$ est l'espérence du premier temps de retour en $x$ en partant de $x$. Cette quantité représente l'intervale de temps typique entre deux passages consécutifs en $x$.
+
+\subsection{Distribution stationnaire}
+
+On note par $\mu_t$ le vecteur ligne qui donne la distribution de probabilité sur \om à l'instant $t$ et par $\mu_t(x)$ la probabilité d'être en $x$ l'instant $t$, i.e. $\mu_t(x) = \mathbf{P}\{X_t = x \} \quad \forall x \in \Omega$. Obtenir la distribution à l'instant $t+1$ revient à appliquer une fois à $\mu_t$ la matrice de transition $P$. On a:
+
+\begin{equation}
+  \mu_t = \mu_{t-1}P \quad \forall t\geq{1}
+\end{equation}
+
+En partant d'une distribution initiale $\mu_0$, on a:
+
+\begin{equation}
+  \mu_t = \mu_0P^t \quad \forall t\geq{0}
+\end{equation}
+
+Une distribution $\pi$ est dite \textbf{stationnaire} pour \xt si elle satisfait
+
+\begin{equation}
+  \pi = \pi P
+\end{equation}
+
+De manière équivalente:
+
+\begin{equation}
+  \pi(y) = \sum_{x \in \Omega} \pi(x)P(x,y) \quad \forall y \in \Omega
+\end{equation}
+
+La distribution stationnaire peut être perçue comme étant la représentation du temps passé en chaque que étape $x$ de \om.
+
+\subsection{Temps de mélange}
+
+Le \textbf{temps de mélange} est le temps minimum pour atteindre la distribution stationnaire si elle existe. Dans notre cas, comme on veut atteindre une distribution uniforme, le temps de mélange nous donne une idée sur l'éfficacité de notre générateur.
+
+Plusieurs résultats de \cite{levin2009markov} nous donnent des bornes (inférieures et supérieures) sur le temps de mélange. Ces résultats seront rappelés et utilisés plus tard dans nos preuves.
+
+\subsection{Existance et unicité de $\pi$}
+
+L'existance de la distribution stationnaire pour une chaîne irreductible est fortement liée à $\tau_x^+$, en particulier à la recurrence de $x$.
+
+\begin{propriete}
+  Si P est irreductible et apériodique, les deux assertions suivantes sont équivalentes:
+  \begin{enumerate}[i]
+    \item Il existe $\pi$, une distribution sur \om tel que $\pi = \pi P$ et $\pi(x)>0$ pour tout $x$ de \om.
+    \item $\pi(x) = \frac{1}{\mathrm{E}_x(\tau_x^+)}$
+  \end{enumerate}
+\end{propriete}
+
+\begin{propriete}
+  Une chaîne irreductible à espace d'états fini est récurrente positive, i.e. tous ces états sont récurrents positifs. Elle possede une unique distribution stationnaire $\pi$.
+\end{propriete}
+
+\begin{propriete}
+  Si \xt est symétrique alors l'uniforme sur \om est stationnaire.
+\end{propriete}
+
+\section{Modèle des $(d, k)$-polytopes}
+
+Rappelons que notre objectif principal est de construire un générateur aléatoire uniforme de $(d, k)$-polytopes. Et cela en utilisant les chaînes de Markov. Soit donc notre $[0,k]^d$ hypercube.
+
+L'idée générale de la construction du générateur aléatoire est de lancer des marches sur une chaîne de Markov \xt dont l'espace des états \om est l'ensemble des $(d, k)$-polytopes pour $k$ et $d$ fixés et la matrice de transition $P$, n'étant pas entièrement déterminée, est définie par des opérations locales sur nos $(d, k)$-polytopes.
+
+Nous allons prouver que \xt ainsi définie aura l'uniforme comme distribution stationnaire et ainsi obtenir un générateur uniforme de $(d, k)$-polytopes.
+
+\subsection{Règles de transition}
+
+Les règles de transition sur notre espace \om est définie par des opérations locales sur nos $(d, k)$-polytopes, des opérations qui consistent à ajouter ou supprimer un sommet pour passer d'un état à un autre. On se donne les règles suivantes:
+
+Soient $x$ et $y$ deux états de $\Omega$, donc deux polytopes ayant un nombre arbitraire de sommets. On tire uniformément un point $v$ dans $[0,k]^d$.
+\begin{itemize}
+  \item Si $v$ est un point inétieur à $x$, on boucle sur $x$
+  \item Si $v$ fait partie des sommets de $x$ et si $x$ a au moins $d+2$ sommets alors on supprime $v$ de l'enveloppe convexe de $x$. On a une transition de $x$ vers $y = x - \{v\}$
+  \item Si $v$ est tiré à l'extérieur de l'enveloppe convexe de $x$, on calcule l'enveloppe convexe de $x \cup \{v\}$:
+  \begin{itemize}
+    \item Si cette enveloppe ajoute le sommet $v$ à l'enveloppe convexe de $x$ sans en supprimer, alors on a une transition de $x$ vers $y = x \cup \{v\}$
+    \item Sinon on boucle sur $x$
+  \end{itemize}
+\end{itemize}
+
+\subsection{Marches sur \xt}
+
+Considérons maitenant notre chaîne \xt ainsi définie. Engendrer aléatoirement un $(d, k)$-polytope consiste à effectuer une marche aléatoire sur \om avec les règles de transition que l'on a précédement définies jusqu'à ce qu'on atteigne la distribution stationnaire.
+
+Et justement ce temps d'arrêt de notre marche, qui est exactement le temps de mélange de $X_t$, sera déterminer par des conditions qu'il nous faut encore déterminé de manière à optimiser l'efficacité de notre générateur. Plusieurs techniques sont à notre disposition mais elles seront étudiées plus tard.
+
+Engendrer aléatoirement un $(d, k)$-polytope, en se basant sur ce modèle de chaîne de Markov est donné par l'algorithme suivant:
+
+% \vspace{2cm}
+
+\input{algorithms/markovianSampler}
+
+
+\begin{theorem} \label{thm1}
+  La chaîne de Markov \xt est irréductible, apériodique et a l'uniforme comme distribution stationnaire.
+\end{theorem}
+
+La preuve du Théorème \ref{thm1} se fera en trois étapes et sera décomposée dans la suite de cette section.
+
+\subsubsection{Irréductibilité}
+
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+
+\end{document}

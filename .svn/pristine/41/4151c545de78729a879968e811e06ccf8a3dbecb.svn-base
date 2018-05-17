@@ -1,0 +1,17 @@
+\begin{thebibliography}{9}
+\bibitem{deza2016improved}
+	Antoine Deza, Lionel Pournin.
+	\emph{Improved bounds on the diameter of lattice polytopes}.
+	arXiv preprint arXiv:1610.00341.
+	2016.
+\bibitem{naddef1989hirsch}
+	Denis Naddef.
+	\emph{The Hirsch conjecture is true for (0, 1)-polytopes}.
+	Mathematical Programming, Springer.
+	1989.
+\bibitem{del2016diameter}
+	Alberto Del Pia, Carla Michini.
+	\emph{On the diameter of lattice polytopes}.
+	Discrete \& Computational Geometry, Springer.
+	2016.
+\end{thebibliography}

@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[ruled,vlined,french]{algorithm2e}
+
+% New commands
+\newcommand{\xt}{$(X_t)$ }
+\newcommand{\om}{$\Omega$ }
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% New Environment
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{propriete}{Property}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{remarque}{Remark}[subsection]
+
+% Numbering equations
+
+
+\begin{document}
+
+\title{Lattice polytopes random sampling using Markov chains}
+\author{Julien David, Lionel Pournin, Rakotonarivo Rado}
+\maketitle
+
+\noindent{\textbf{Abstract.}} This paper describes an approach of random sampling of lattice polytopes contained in a $[0,k]^d$ hypercube, denoted by $(d,k)-$polytopes. This method consists in modeling a Markov chain where the space of states $\Omega$ is the set of polytopes of dimension $d$ contained in the $[0,k]^d$ hypercube coupled with a set of several transition rules. Given $d$ and $k$, we run a random walk on the chain until we reach a stationnary distribution. We prove that such a chain is irreducible, aperiodic and has the uniform as stationnary distribution, hence a uniform random sampler of $(d,k)-$polytopes.
+
+\section{Introduction}
+
+A Markov chain is a process wich evolves in time on a space of states $\Omega$. It is characterized by its transition matrix $P$, which describes the transitions between the states of $\Omega$.
+
+It is a common way to model a Markov chain in order to sample random objects, then run a random walk on it until one reaches a stationnary distribution. Under some conditions one can ensure an uniform distribution on the space of state $\Omega$. In this document, this process will be used to build a random sampler for the lattice polytopes contained in the $[0,k]^d$ hypercube. From now such polytope will be denoted as $(d,k)-$polytope.
+
+However, this method may be simple, several complications may appear in the case of $(d,k)-$polytopes: the exactness on the number of states in $\Omega$, the transition matrix $P$ is not totally defined, and furthermore ensuring the uniform distribution needs various conditions to be verified.
+
+Nevertheless, due to the large number of results and several technics already known on Markov chains \cite{levin2009markov}, this method of sampling has a serious chance to end up with new results. With this process, and under some specific set of transition rules we has prooved that the Markov chain we modeled is irreducible, aperiodic and has the uniform as stationnary distribution.
+
+This paper will be structured as follows. First a reminder on the essential results on Markov chains we used in our proof will be given. Then, the concrete Markov chain we modeled will be discribed. Finally we will give a proof to our main results on the chain.
+
+\section{Reminders}
+
+Let us beging on some reminders on some important propreties already known on Markov chains. Since the number of lattice polytopes contained in the $[0,k]^d$ is finite, we only take into account Markov chains with a finite space of state.
+
+\subsection{Definitions}
+
+A \textit{Markov chain} $(X_t)_{t\geq{0}}$ with a finite space of space $\Omega$ is a process evolving in time on the elements of $\Omega$. Moving from an element $x \in \Omega$ to another state follows a fixed distribution $P(x,\cdot)$. $(X_t)_{t\geq{0}}$ is a sequence of random variables $(X_0, X_1, \cdots)$ which has its values in $\Omega$. The \textbf{Markov property} on $(X_t)$ ensures that at the value of the chain at time $t+1$  only depends of the value of the chain at the time $t$.
+
+The \textit{transition matrix} $P$ of $(X_t)$ defines the transition between the states of $\Omega$. $P$ is stochastic and its $x-$th row refer to the distribution $P(x,\cdot)$. One has:
+
+\begin{equation}
+  \sum_{y \in \Omega} P(x,y) = 1 \quad \forall{x \in \Omega}
+\end{equation}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=5cm]{assets/frog}
+    \caption{A Markov chain such that: $\Omega = \{x,y\}$, $P(x,x) = 1-p$, $P(x,y) = p$,  $P(y,x) = q$ and $P(y,y) = 1-q$}
+    \label{fig:fig1}
+  \end{center}
+\end{figure}
+
+\subsection{Properties}
+
+Let $(X_t)_{t\geq{0}}$ be a Markov chain, $\Omega$ its space of state and $P$ its transition matrix.
+
+\subsubsection{Irreducibility}
+
+The transition matrix $P$ is \textbf{irreducible} if all state $x\in \Omega$ can be reached from any other state of $\Omega$. One has:
+
+\begin{equation}
+  \exists r_0 \quad \ : \quad \forall r > r_0, \  \forall x,y \in \Omega \quad P^r(x,y) > 0
+\end{equation}
+
+\subsubsection{Periodicity}
+
+We define by $\mathcal{T}(x):=\{t\geq{1} \ : P^t(x,x)>0\}$ the set of the times when the chain gets back at the state $x\in \Omega$. The \textbf{period} of $x$ is defined by $\mathrm{gcd}(\mathcal{T}(x))$. $(X_t)$ is \textbf{aperiodic} if all states in $\Omega$ has a period $1$, otherwise it is called \textbf{periodic}.
+
+\begin{propriete}
+  If $P$ is irreducible then all the state of $\Omega$ has the same period.
+\end{propriete}
+
+\subsubsection{Symerty}
+
+$(X_t)$ is said to be \textbf{symetric} if for all $x$ and $y$ in $\Omega$, one has the same probability to move from $x$ to $y$ and from $y$ to $x$, i.e:
+
+\begin{equation}
+  P(x,y) = P(y,x) \quad \forall x,y \in \Omega
+\end{equation}
+
+\subsubsection{Hitting time and first return time}
+
+For all state $x \in \Omega$, we define the \textbf{hitting time} by $\tau_x=\min \{t\geq{0} \ : X_t = x\}$. It is the time when time the chain visits $x$ for first time. For situations where only a visit to $x$ at positive time will do, we define $\tau_x^+=\min \{t\geq{1} \ : X_t = x\}$. If $X_0 = x$, $\tau_x^+$ is called \textbf{first return time}.
+
+\subsubsection{Recurrence of a state}\label{recurrence}
+
+A state $x$ is \textbf{positive recurrent} if $\mathrm{E}_x(\tau_x^+)<\infty$, where $\mathrm{E}_x(\tau_x^+)$ is the expectation of the first return time at $x$ starting from $x$. This simply means that this quantity represents the average of time spent between two consecutive visits on $x$.
+
+\subsection{Stationnary distribution}
+
+We note by $\mu_t$ the row vector giving the probability distribution on $\Omega$ at the time $t$, and by $\mu_t(x)$ the probability to be at $x$ at the time $t$, this means that $\mu_t(x) = \mathbf{P}\{X_t = x \} \quad \forall x \in \Omega$. In order to obtain the distribution $\mu_{t+}$, one has to apply one time to $\mu_t$ the transition matrix $P$, on the right. That is:
+
+\begin{equation}
+  \mu_t = \mu_{t-1}P \quad \forall t\geq{1}
+\end{equation}
+
+Starting from an initial distribution $\mu_0$, one has $\mu_t = \mu_0P^t \quad \forall t\geq{0}$. In particular, a distribution is called \textbf{stationnary} if it satisfies:
+
+\begin{equation}
+  \pi = \pi P
+\end{equation}
+
+In another words, one has:
+
+\begin{equation}
+  \pi(y) = \sum_{x \in \Omega} \pi(x)P(x,y) \quad \forall y \in \Omega
+\end{equation}
+
+The stationnary distribution $\pi$ can be viewed as the average amont of time spent by the chain at each state of $\Omega$.
+
+\subsection{Mixing time}
+
+For a chain $(X_t)$, the \textbf{mixing time} is the smallest time needed until we reach a stationnary distribution if it exists. In our case, we are willing to reach an uniform distribution over $\Omega$. The mixing time will determine the efficiency of our sampler.
+
+\subsection{Existence and uniqueness of $\pi$}
+
+The existence of a stationnary distribution for an irreducible chain is strongly related to $\tau_x^+$, in particular to the recurrence of $x$ \ref{recurrence}. For an irreducible and aperiodic chain we have the following properties:
+
+\begin{propriete}\label{prop:irr_ap}
+  If $P$ is irreducible and aperiodic, these assumptions are equivalent:
+  \begin{enumerate}[i]
+    \item There exists $\pi$, a distribution over $\Omega$ such that $\pi = \pi P$ and $\pi(x)>0$ for all $x$ in $\Omega$.
+    \item $\pi(x) = \frac{1}{\mathrm{E}_x(\tau_x^+)}$.
+  \end{enumerate}
+\end{propriete}
+
+\begin{propriete}\label{prop:uniqueness}
+  An irreducible chain with a finite space of state is positive recurrent, meaning that all its states are positive recurrent. It has an unique stationnary distribution $\pi$.
+\end{propriete}
+
+\begin{propriete}\label{prop:uniformity}
+  If $(X_t)$ is symetric then the uniform distribution over $\Omega$ is a stationnary distribution of $(X_t)$.
+\end{propriete}
+
+\section{$(d,k)-$polytopes model}
+
+Let us recall that we aim to build an uniform random sampler of $(d,k)-$polytopes. In this section we will describe our Markov chain model in order to do so. Given $d$ and $k$, let us consider the $[0,k]^d$ hypercube. The main idea of the sampler is to run random walk on a Markov chain $(X_t)$ which space of state $\Omega$ is the set of $(d,k)-$polytopes. The transition matrix $P$ will be described as a set of local rules on our $(d,k)-$polytopes.
+
+\subsection{Notations and context}
+
+
+
+
+
+
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+
+\end{document}

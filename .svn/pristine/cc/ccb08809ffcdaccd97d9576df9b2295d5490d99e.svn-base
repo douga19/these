@@ -1,0 +1,35 @@
+#ifndef _MATRIX_HPP
+#define _MATRIX_HPP
+
+#include <fstream>
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class Matrix{
+private:
+    int row;
+    int column;
+    double** values;
+public:
+    Matrix(){}
+    ~Matrix(){}
+    Matrix(int row, int column);
+    // Matrix(file* f);
+
+    int getRow(){ return row; }
+    int getColumn(){ return column; }
+    void setRow(int r) { row = r; }
+    void setColumn(int c) { column = c; }
+
+    void setValues();
+    void copy(Matrix* m);
+
+    void display();
+    Matrix* productWith(Matrix* m);
+    Matrix* toThe(int n);
+    bool equals(Matrix *m, double epsilon);
+};
+
+#endif

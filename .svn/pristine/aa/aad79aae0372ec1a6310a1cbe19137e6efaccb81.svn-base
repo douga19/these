@@ -1,0 +1,38 @@
+#include <iostream>
+#include "../header/Matrix.hpp"
+
+using namespace std;
+
+int main(int argc, char const *argv[]) {
+  cout << "Ce programme est un simulateur Chaine de Markov" << endl;
+
+  int mixingTime = 0;
+  double epsilon = 0.001;
+
+  Matrix* P = new Matrix(5,5);
+  Matrix* mu_0 = new Matrix(1,5);
+  Matrix* mu_t = new Matrix(1,5);
+
+  P->setValues();
+  mu_0->setValues();
+
+  cout << "Matrice de transition P:" << endl;
+  P->display();
+
+  cout << "Distribution initiale mu_0:" << endl;
+  mu_0->display();
+
+  mu_t = mu_0->productWith(P);
+
+  while (!(mu_t->equals(mu_t->productWith(P),0.001))) {
+    mu_t = mu_t->productWith(P);
+    mixingTime++;
+  }
+
+  cout << "Distribution Uniforme pi:" << endl;
+  mu_t->display();
+
+  cout << "Mixing time à " << epsilon << " près = " << mixingTime << endl;
+
+  return 0;
+}

@@ -1,0 +1,46 @@
+\relax 
+\catcode `:\active 
+\catcode `;\active 
+\catcode `!\active 
+\catcode `?\active 
+\select@language{french}
+\@writefile{toc}{\select@language{french}}
+\@writefile{lof}{\select@language{french}}
+\@writefile{lot}{\select@language{french}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\citation{levin2009markov}
+\citation{levin2009markov}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Cha\IeC {\^\i }nes de Markov}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}D\IeC {\'e}finitions}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Une cha\IeC {\^\i }ne de Markov tel que: $\Omega = \{x,y\}$, $P(x,x) = 1-p$, $P(x,y) = p$, $P(y,x) = q$ et $P(y,y) = 1-q$}}{3}}
+\newlabel{fig:fig1}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Propri\IeC {\'e}t\IeC {\'e}s}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Irr\IeC {\'e}ductibilit\IeC {\'e}}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}P\IeC {\'e}riodicit\IeC {\'e}}{3}}
+\newlabel{prop1}{{2.1}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Sym\IeC {\'e}trie}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Hitting time et premier temps de retour}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}R\IeC {\'e}currence d'un \IeC {\'e}tat}{4}}
+\newlabel{recurrence}{{2.3}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Distribution stationnaire}{4}}
+\citation{levin2009markov}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Temps de m\IeC {\'e}lange}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Existence et unicit\IeC {\'e} de $\pi $}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Mod\IeC {\`e}le des $(d, k)$-polytopes}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Notations et contexte du g\IeC {\'e}n\IeC {\'e}rateur}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}R\IeC {\`e}gles de transition}{6}}
+\newlabel{sec:regles}{{3.2}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Marches sur $(X_t)$ }{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Relation de transition entre deux \IeC {\'e}tats $x$ et $y$ de $\Omega $ : $y = x \cup \{v\}$ et $x = y - \{v\}$, o\IeC {\`u} $v \in [0,k]^d$}}{7}}
+\newlabel{fig:fig2}{{2}{7}}
+\newlabel{algo1}{{1}{7}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces $\Gamma (d,k)$: Engendrer al\IeC {\'e}atoirement un $(d,k)$-polytope}}{7}}
+\newlabel{thm1}{{1}{7}}
+\newlabel{prop:prop1}{{3.1}{8}}
+\newlabel{prop:prop2}{{3.2}{8}}
+\newlabel{eq:eq11}{{11}{8}}
+\newlabel{eq:eq12}{{14}{10}}
+\newlabel{thm2}{{3}{10}}
+\bibstyle{plain}
+\bibdata{biblio.bib}
+\bibcite{levin2009markov}{1}

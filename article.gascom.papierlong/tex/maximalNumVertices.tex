@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{color}
+\usepackage{xcolor,colortbl}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{tgpagella}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{abstract}
+
+%       New Environment
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+%\numberwithin{equation}{section}
+
+%       Line numberwithin
+\usepackage[left]{lineno}
+%\linenumbers
+
+%       Math definitions
+\newcommand{\V}{\mathcal{V}}
+
+
+
+
+\begin{document}
+
+\title{Lattice polytopes with no possible vertex addition}
+\author{Rado Rakotonarivo}
+\maketitle
+
+\section{Context}
+
+Consider two lattice $(d,k)$-polytopes, we investigated whether it is always possible to connect them by a sequence of lattice $(d,k)$-polytopes such that the vertex sets of two consecutive polytopes in that sequence can be obtained from one another by the insertion or the deletion of a single vertex. Considering the graph $\Gamma(d,k)$ as the graph whose vertices are the $d$-dimensional lattice $(d,k)$-polytope and whose edges connect two polytopes as soon as the vertex set of one of them is obtained by inserting a lattice point into the vertex set of the other, we proved that $\Gamma(d,k)$ is connected for all $d\geq2$ and $k\geq1$.
+
+We are now interested in a subgraph of $\Gamma(d,k)$ induced by the polytopes with at least $n$ vertices, with $n>d+1$. Since the connectivity of $\Gamma(d,k)$ relies on the fact that any lattice polytope can be reduced as a full-dimensional simplex, and the subgraph induced by full-dimensional simplices is connected. The question is that: for any $n>d+1$, can we proceed the same way we did on simplices in order to keep the connectivity of the announced subgraph? It turns out that there exists lattice polytopes for which no insertion move is possible, as a consequence the announced subgraph of $\Gamma(d,k)$ is disconnected.
+
+To prove that we are using constructions inspired from the primitive zonotopes recently introduced by Deza, Manoussakis and Onn \cite{DezaManoussakisOnn2018}. When $d=2$, we prove the following stronger statement: the subgraph of $\Gamma(d,k)$ induced by the polygons with at least $n$ vertices is disconnected for all $n>3$.
+
+
+
+\section{Sketch of proof}
+
+Recall that for a lattice $(d,k)$-polytope $P$ with vertex set $\mathcal{V}$. If, for some lattice point $x\in[0,k]^d$, there is a polytope $P'$ with vertex set $\mathcal{V}\cup\{x\}$, we say that $P'$ is obtained from $P$ by an insertion move on $x$ (or simply by inserting $x$). Inversely, we say that $P$ is obtained from $P'$ by a deletion move on $x$ (or, equivalently, by deleting $x$). More precisely one needs to find the lattice point $x$ to move from $P$ to $P'$.
+
+Thus, saying that there is no possible insertion move on $P$ means that: for all $x \in [0,k]^d$, either $x \in P$ or $\mathrm{conv}(\mathcal{V} \cup \{x\})$ does not has as vertex set exactly $\mathcal{V} \cup \{x\}$. In this section, we are going to focus on the proof of the following proposition in the 2-dimensional case.
+
+%Consider a $d$-dimensional lattice polytope $P$ with vertex set $\mathcal{V}$. For any vertex $v \in \V$, denote by $e_i$ and by $e_{j}$ the two edges of $P$ incident to $v$. Let $\mathcal{D}_i$ and $\mathcal{D}_{i+1}$ be respectively the affine hull of $e_i$ and $e_{i+1}$. We denote by $H_i^+$ the closed half-space of $\mathbb{R}^d$ that does not contain $P$. For any $v \in \V$, the intersection
+
+%\begin{equation}
+%  C_v = H_i^+ \cap H_{i+1}^+
+%\end{equation}
+%is a $d$-dimensional cone pointed at $v$. This cone is exactly the set of the points $x\in\mathbb{R}^d$ such that the convex hull of $P\cup\{x\}$ does not admit $v$ as a vertex. By this remark, we have the following lemma.
+
+%\begin{lemma}\label{Lem.A}
+% Let $x$ be a lattice point in $[0,k]^d$. The convex hull of $P\cup\{x\}$ admits $\mathcal{V}\cup{x}$ as its vertex set if and only if $x$ does not belong to $P$ and, for every vertex $v\in\mathcal{V}$, $x$ does not belong to $C_v$.
+%\end{lemma}
+
+
+\begin{proposition}
+  For all $n>3$. There exists a lattice $(d,k)$-polytope $P$ with vertex set $\mathcal{V}$ contained in $[0,\infty[^2$ with $n$ vertices such that no insertion of any lattice point $x \in \mathbb{Z}^2$ is possible.
+\end{proposition}
+
+
+
+Consider the triangle P = description ... TO BE DONE.
+
+\begin{theorem}[Pick]
+  Let P be a lattice polytope.
+  $$
+    \mathrm{vol}(P) = \mathrm{card}(P \cap \mathbb{Z}^2) - \frac{1}{2} \mathrm{card}(\delta P \cap \mathbb{Z}^2) - 1.
+  $$
+\end{theorem}
+
+To prove that there is no possible insertion of a lattice point, we shall prove that $\mathrm{vol}(P)< 1/2$.
+
+$P$ is the triangle $(ABC)$ with basis $BC$ and height $AH$, where $H$ is the orthogonal projection of $A$ on $(BC)$. If $\vec{v} (x_v,y_v)$ is the slope of $(BC)$, we have:
+
+$$
+\left\{
+  \begin{aligned}
+    BA^2 &= BH^2 + AH^2 \\
+    AH &= \sqrt{BA^2 - BH^2} \\
+  \end{aligned}
+\right.
+$$
+
+Where
+
+$$
+\begin{aligned}
+    BA^2 &= (x_A-x_B)^2 + (y_A-y_B)^2 \\
+    BH^2 &= \frac{((x_A-x_B)x_v + (y_A-y_B)y_v)^2}{x_v^2 + y_v^2} \\
+\end{aligned}
+$$
+
+And
+
+$$
+\mathrm{vol}(P) = 1/2 \times BC \times AH
+$$
+
+\subsection{Case $\Delta x = 1, \Delta y = p,q,r$}
+Here are the straight lines equations:
+\begin{equation}
+  \begin{aligned}
+    (A): y  &= px \\
+    (B): y  &= qx + p - q \\
+    (C): y  &= rx + p + q - 2r
+  \end{aligned}
+\end{equation}
+
+Thus the intersection $A$ of $(A)$ and $(C)$ is:
+\begin{equation}
+\left\{
+\begin{aligned}
+  x &= \frac{p + q - 2r}{p - r} \\
+  y &= \frac{(p + q - 2r)p}{p - r} \\
+\end{aligned}
+\right.
+\end{equation}
+
+In this case, we have: $A(x,y), B(1,p), \vec{v}=(1,p)$. Thus
+
+\begin{equation}
+  \mathrm{vol}(P) =
+\end{equation}
+
+
+
+
+\subsection{Case $\Delta x = p,q,r, \Delta y = 1$}
+Here are the straight lines equations:
+\begin{equation}
+  \begin{aligned}
+    (A): y  &= \frac{1}{p}x \\
+    (B): y  &= \frac{1}{q}x + \frac{q-p}{q} \\
+    (C): y  &= \frac{1}{r}x + \frac{2r-q-p}{r} \\
+  \end{aligned}
+\end{equation}
+
+Thus the intersection of $(A)$ and $(C)$ is:
+\begin{equation}
+\left\{
+\begin{aligned}
+  x &= \frac{(2r-p-q)p}{r-p} \\
+  y &= \frac{2r-p-q}{r-p} \\
+\end{aligned}
+\right.
+\end{equation}
+
+
+
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+
+\end{document}

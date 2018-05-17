@@ -1,0 +1,23 @@
+A Markov chain for lattice polytopes by Julien David, Lionel Pournin and Rado Rakotonarivo
+
+
+
+In this paper, the authors present a Markov chain to generate random d-dimensional polytopes whose vertices' coordinates 
+are integers ranging from 0 to k. There's been a raising interest on this kind of polytopes lately, in an attempt to 
+understand how the size of the coordinates affects their combinatorial complexity. In particular, there are some 
+intriguing open conjectures concerning them. Having available random instances is a good way to either disprove them or 
+to have more evidence for their validity.
+
+
+They present two variants of the Markov chain. In the first, a point is sampled randomly and added to the polytope if 
+this operation increases the number of vertices, or removed it if it was a vertex. The main difficulty in this approach 
+lies in proving that one can always add a vertex to the simplex case. Although the statement seems easy, the proof is 
+rather involved and presented in an appendix. A second version treats the simplex case separately, thus easing the 
+analysis. They show that the Markov chains are irreducible, aperiodic and symmetric, and hence converge to the uniform 
+distribution. 
+
+They present a crude estimate that shows that the mixing time grows at least like k^{d(d-1)/(d+1)}. I also 
+suspect that the probability of looping will be very large, so it is not clear that this method will yield results for 
+large values of k and d in practice. Yet, the approach is interesting and worth being explored, and fits perfectly the 
+topic of the conference. I thus recommend accepting the paper.
+

@@ -1,0 +1,20 @@
+\begin{algorithm}[H]\label{algo1}
+  \LinesNumbered
+  \DontPrintSemicolon
+  \KwIn{the dimension $d$, the side $k$ of the hypercube}
+  \KwOut{random $(d,k)$-polytope drawn in $[0,k]^d$}
+  \BlankLine
+
+  arbitrary initial state $x_0$\;
+  \While{the stationnary distribution is not reached}{
+  draw a random point $v$ in $[0,k]^d$\;
+  \If{$v \in x_0$ et $|x_0| > d + 1$}{
+    $x_0$ = $x_0 - \{ v\}$\;
+   }
+  \ElseIf{$|Conv(x_0 \cup \{ v\})|$ == $|x_0| + 1$}{
+    $x_0$ = $x_0 \cup \{ v\}$\;
+  }
+ }
+ \Return{$x_0$}
+ \caption{$\Gamma(d,k)$: Sample a $(d,k)$-polytope}
+\end{algorithm}

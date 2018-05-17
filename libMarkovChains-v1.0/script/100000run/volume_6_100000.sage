@@ -6,3 +6,4 @@ sum = 0.
 for p in list_6_100000:
 	sum += float(p.volume())
 print 6," ", sum/len(list_6_100000)
+del list_6_100000
