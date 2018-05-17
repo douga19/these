@@ -1,0 +1,40 @@
+\begin{algorithm}[H]\label{Algo.RS2}
+  \LinesNumbered
+  \DontPrintSemicolon
+  \KwIn{the dimension $d$, the size $k$ of the hypercube}
+  \KwOut{a random lattice $(d,k)$-polytope}
+  \BlankLine
+
+  sample a random lattice $(d,k)$-simplex $P$ with vertex set $\mathcal{V}$\;
+  \While{we are not close enough to the stationary distribution}{
+  generate random a lattice point $x$ in $[0,k]^d$\;
+  \If{$x \in \mathcal{V}$}{
+    \If{$|\mathcal{V}|=d+1$}{
+      generate a random lattice point $y$ in $[0,k]^d$\;
+      \If{$\mathrm{conv}([\mathcal{V}\mathord{\setminus}\{x\}]\cup\{y\})$ is $d$-dimensional}{
+        $P\leftarrow\mathrm{conv}([\mathcal{V}\mathord{\setminus}\{x\}]\cup\{y\})$\;
+      }
+    }
+    \ElseIf{$\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ is $d$-dimensional}{
+      $P\leftarrow\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$\;
+    }
+    %\If{$\mathrm{conv}(\mathcal{V}\mathord{\setminus}\{x\})$ is $d$-dimensional}{
+      %$P\leftarrow \mathrm{conv}(\mathcal{V}\setminus\{x\})$\;
+    %}
+    %\Else{
+      %generate random a lattice point $y$ in $[0,k]^d$\;
+      %\If{$|\mathrm{conv}(\mathcal{V}\mathord{\setminus} \{x\} \cup \{y\})|$ == $d+1$}{
+      %  $P\leftarrow \mathrm{conv}(\mathcal{V}\mathord{\setminus} \{x\} \cup \{y\})$\;
+      %}
+    }
+   %}
+  \Else{
+    compute the convex hull $Q$ of $\mathcal{V}\cup\{x\}$\;
+    \If{the vertex set of $Q$ is $\mathcal{V}\cup\{x\}$}{
+      $P \leftarrow \mathrm{conv}(\mathcal{V} \cup \{ x\})$\;
+    }
+  }
+ }
+ \Return{$P$}
+ \caption{Random sampling of a lattice $(d, k)$-polytope}
+\end{algorithm}

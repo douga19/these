@@ -1,0 +1,119 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BDSE{\etalchar{+}}14}
+
+\bibitem[Av95]{AcketaZunic1995}
+Dragan Acketa and Jovi\v{s}a \v{Z}uni\'{c}.
+\newblock On the maximal number of edges of convex digital polygons included
+  into an $m\times{m}$-grid.
+\newblock {\em Journal of Combinatorial Theory A}, 69:358--368, 1995.
+
+\bibitem[BB91]{BB91}
+Antal Balog and Imre B\'{a}r\'{a}ny.
+\newblock On the convex hull of the integer points in a disc.
+\newblock In {\em Proceedings of the Seventh Annual Symposium on Computational
+  Geometry}, pages 162--165, 1991.
+
+\bibitem[BDF]{BorgwardtDeLoeraFinhold2016}
+Steffen {Borgwardt}, Jes{\'u}s {De Loera}, and Elisabeth {Finhold}.
+\newblock The diameters of transportation polytopes satisfy the {H}irsch
+  conjecture.
+\newblock {\em Mathematical Programming, to appear}.
+
+\bibitem[BDJM13]{bodini2013asymptotic}
+Olivier Bodini, Ph~Duchon, Alice Jacquot, and L~Mutafchiev.
+\newblock Asymptotic analysis and random sampling of digitally convex
+  polyominoes.
+\newblock In {\em International Conference on Discrete Geometry for Computer
+  Imagery}, pages 95--106. Springer, 2013.
+
+\bibitem[BDSE{\etalchar{+}}14]{BonifasDiSummaEisenbrandHahnleNiemeier2014}
+Nicolas Bonifas, Marco Di~Summa, Friedrich Eisenbrand, Nicolai H\"{a}hnle, and
+  Martin Niemeier.
+\newblock On sub-determinants and the diameter of polyhedra.
+\newblock {\em Discrete and Computational Geometry}, 52:102--115, 2014.
+
+\bibitem[BL98]{barany1998convex}
+Imre B{\'a}r{\'a}ny and David~G Larman.
+\newblock The convex hull of the integer points in a large ball.
+\newblock {\em Mathematische Annalen}, 312(1):167--181, 1998.
+
+\bibitem[CDF11]{carnino2011random}
+Vincent Carnino and Sven De~Felice.
+\newblock Random generation of deterministic acyclic automata using markov
+  chains.
+\newblock In {\em International Conference on Implementation and Application of
+  Automata}, pages 65--75. Springer, 2011.
+
+\bibitem[DDT14]{devillers2014generator}
+Olivier Devillers, Philippe Duchon, and R{\'e}my Thomasse.
+\newblock A generator of random convex polygons in a disc.
+\newblock In {\em AofA 2014-25th International Conference on Probabilistic,
+  Combinatorial and Asymptotic Methods for the Analysis of Algorithms}, 2014.
+
+\bibitem[DM16]{DelPiaMichini2016}
+Alberto {Del Pia} and Carla {Michini}.
+\newblock On the diameter of lattice polytopes.
+\newblock {\em Discrete and Computational Geometry}, 55:681--687, 2016.
+
+\bibitem[DMO]{DezaManoussakisOnn2018}
+Antoine Deza, George Manoussakis, and Shmuel Onn.
+\newblock Primitive zonotopes.
+\newblock {\em Discrete and Computational Geometry, to appear}.
+
+\bibitem[DP18]{DezaPournin2018}
+Antoine Deza and Lionel Pournin.
+\newblock Improved bounds on the diameter of lattice polytopes.
+\newblock {\em Acta Mathematica Hungarica}, 154:457--469, 2018.
+
+\bibitem[DPR]{DavidPourninRakotonarivo2018}
+Julien David, Lionel Pournin, and Rado Rakotonarivo.
+\newblock Elementary moves on lattice polytopes.
+\newblock {\em in preparation}.
+
+\bibitem[KK92]{KalaiKleitman1992}
+Gil Kalai and Daniel Kleitman.
+\newblock A quasi-polynomial bound for the diameter of graphs of polyhedra.
+\newblock {\em Bulletin of the American Mathematical Society}, 26:315--316,
+  1992.
+
+\bibitem[KO92]{KleinschmidtOnn1992}
+Peter Kleinschmidt and Shmuel Onn.
+\newblock On the diameter of convex polytopes.
+\newblock {\em Discrete Mathematics}, 102:75--77, 1992.
+
+\bibitem[KW67]{KleeWalkup1967}
+Victor~Klee Klee and David Walkup.
+\newblock The $d$-step conjecture for polyhedra of dimension $d<6$.
+\newblock {\em Acta Mathematica}, 117:53--78, 1967.
+
+\bibitem[LPW09]{levin2009markov}
+David~Asher Levin, Yuval Peres, and Elizabeth~Lee Wilmer.
+\newblock {\em Markov chains and mixing times}.
+\newblock American Mathematical Soc., 2009.
+
+\bibitem[MDBM01]{melanccon2001random}
+Guy Melan{\c{c}}on, Isabelle Dutour, and Mireille Bousquet-M{\'e}lou.
+\newblock Random generation of directed acyclic graphs.
+\newblock {\em Electronic Notes in Discrete Mathematics}, 10:202--207, 2001.
+
+\bibitem[Nad89]{Naddef1989}
+Dennis Naddef.
+\newblock The {H}irsch conjecture is true for $(0,1)$-polytopes.
+\newblock {\em Mathematical Programming}, 45:109--110, 1989.
+
+\bibitem[San12]{Santos2012}
+Francisco Santos.
+\newblock A counterexample to the {H}irsch conjecture.
+\newblock {\em Annals of Mathematics}, 176:383--412, 2012.
+
+\bibitem[Thi91]{T91}
+Torsten Thiele.
+\newblock Extremalprobleme f\"{u}r {P}unktmengen.
+\newblock {\em Diplomarbeit, Freie Universit\"{a}t Berlin}, 1991.
+
+\bibitem[Zie95]{ziegler1995lectures}
+G{\"u}nter~M Ziegler.
+\newblock {\em Lectures on polytopes}, volume 152.
+\newblock Springer Science \& Business Media, 1995.
+
+\end{thebibliography}
